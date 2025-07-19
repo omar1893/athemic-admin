@@ -1,0 +1,417 @@
+@import "tailwindcss";
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  width: 100%;
+  height: 100vh;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.card {
+  padding: 2em;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+
+/* Design System Variables */
+:root {
+  --color-primary: #2563eb;
+  --color-secondary: #64748b;
+  --color-bg: #f8fafc;
+  --color-surface: #ffffff;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --color-success: #22c55e;
+  --color-danger: #ef4444;
+  --color-warning: #facc15;
+
+  --font-family-base: 'Inter', Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-size-heading: 1.5rem;
+  --font-size-small: 0.875rem;
+
+  --border-radius: 8px;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  margin: 0;
+  padding: 0;
+}
+
+/* Add more global styles below */
+
+/* Components styles will be added here */
+
+/* Sidebar Component */
+.sidebar {
+  width: 220px;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.04);
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__nav {
+  flex: 1;
+}
+
+.sidebar__menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.sidebar__item:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.sidebar__icon {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  /* Add icon background or SVG here later */
+}
+
+.sidebar__label {
+  flex: 1;
+}
+
+.sidebar__item--logout {
+  margin-top: 2rem;
+  color: var(--color-danger);
+}
+
+.sidebar__item--logout:hover {
+  background: var(--color-danger);
+  color: #fff;
+}
+
+/* End Sidebar Component */
+
+/* Layout for Dashboard */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.dashboard-main {
+  flex: 1;
+  padding: 2rem;
+  background: var(--color-bg);
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: none;
+  }
+  .dashboard-main {
+    padding: 1rem;
+  }
+}
+
+/* View Page Container Styles */
+.view-container {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 1px 4px rgba(30, 41, 59, 0.03);
+}
+
+.view-heading {
+  font-size: var(--font-size-heading);
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.view-placeholder {
+  color: var(--color-secondary);
+  font-size: var(--font-size-base);
+}
+
+/* --- Orders View Custom CSS commented out for Tailwind-only --- */
+/*
+.orders-container {}
+.orders-header-row {}
+.orders-heading {}
+.orders-toolbar {}
+.orders-search-group {}
+.orders-search-icon {}
+.orders-search-icon::after {}
+.orders-search-input {}
+.orders-search-input::placeholder {}
+.orders-filter-group {}
+.orders-filter-label {}
+.orders-filter-select {}
+.orders-filter-select:focus {}
+.orders-table-wrapper {}
+.orders-table {}
+.orders-table th, .orders-table td {}
+.orders-table th {}
+.orders-table td {}
+.orders-table tr:last-child td {}
+.orders-table tr:hover td {}
+.badge {}
+.badge--procesando {}
+.badge--entregado {}
+.badge--enviado {}
+.badge--cancelado {}
+.badge--pendiente {}
+.orders-store-link {}
+.orders-store-link:hover {}
+.icon-external {}
+.icon-external::after {}
+.orders-pagination {}
+.pagination-btn {}
+.pagination-btn--number {}
+.pagination-btn--active, .pagination-btn--number:focus {}
+.pagination-btn:hover:not(.pagination-btn--active) {}
+.icon-arrow-left, .icon-arrow-right {}
+.icon-arrow-left::before {}
+.icon-arrow-right::before {}
+.orders-count-center {}
+.orders-count {}
+@media (max-width: 800px) {
+  .orders-container {}
+  .orders-toolbar {}
+}
+*/
+
+/* End Refined Orders View Structure */
+
+/* --- Orders Enhanced UI --- */
+.orders-enhanced-container {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 24px 0 rgba(30,41,59,0.08), 0 1.5px 4px rgba(30,41,59,0.03);
+  padding: 2.5rem 2rem;
+  margin: 2rem auto;
+  max-width: 900px;
+}
+.orders-enhanced-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.orders-enhanced-filters input[type="search"],
+.orders-enhanced-filters select {
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border 0.2s;
+}
+.orders-enhanced-filters input[type="search"]:focus,
+.orders-enhanced-filters select:focus {
+  border-color: var(--color-primary);
+}
+.orders-enhanced-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(30,41,59,0.04);
+}
+.orders-enhanced-table th, .orders-enhanced-table td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+}
+.orders-enhanced-table th {
+  background: var(--color-bg);
+  color: var(--color-secondary);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+}
+.orders-enhanced-table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--color-border);
+}
+.orders-enhanced-table tr:hover td {
+  background: var(--color-bg);
+}
+.orders-enhanced-badge {
+  display: inline-block;
+  padding: 0.3em 1em;
+  border-radius: 999px;
+  font-size: 0.95em;
+  font-weight: 600;
+  vertical-align: middle;
+  letter-spacing: 0.01em;
+}
+.orders-enhanced-badge.procesando {
+  background: var(--color-border);
+  color: var(--color-secondary);
+}
+.orders-enhanced-badge.entregado {
+  background: var(--color-success);
+  color: #fff;
+}
+.orders-enhanced-badge.enviado {
+  background: var(--color-primary);
+  color: #fff;
+}
+.orders-enhanced-badge.cancelado {
+  background: var(--color-danger);
+  color: #fff;
+}
+.orders-enhanced-badge.pendiente {
+  background: var(--color-warning);
+  color: #fff;
+}
+.orders-enhanced-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+.orders-enhanced-pagination button {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 0.4em 1em;
+  cursor: pointer;
+  font-size: 1em;
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: background 0.2s, border 0.2s, color 0.2s;
+}
+.orders-enhanced-pagination button.active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.orders-enhanced-pagination button:hover:not(.active) {
+  background: var(--color-bg);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.orders-enhanced-summary {
+  text-align: center;
+  color: var(--color-secondary);
+  font-size: 0.95em;
+  margin-top: 0.5rem;
+}
+@media (max-width: 700px) {
+  .orders-enhanced-container {
+    padding: 1.2rem 0.5rem;
+  }
+  .orders-enhanced-filters {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .orders-enhanced-table th, .orders-enhanced-table td {
+    padding: 0.7rem 0.5rem;
+  }
+}
+/* --- End Orders Enhanced UI --- */
+
+.orders-enhanced-container.analytics-dashboard {
+  max-width: 100% !important;
+}
+
+aside nav a.active {
+  background: #e0e7ff !important;
+  color: #3730a3 !important;
+  font-weight: bold !important;
+}
+
+.analytics-dashboard {
+  max-width: 100%;
+} 
