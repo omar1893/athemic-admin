@@ -11,6 +11,7 @@ const routes = [
       { path: 'orders', name: 'orders', component: () => import('./views/orders/index.vue') },
       { path: 'products', name: 'products', component: () => import('./views/products/index.vue') },
       { path: 'products/create', name: 'productCreate', component: () => import('./views/products/create.vue') },
+      { path: 'products/:id/edit', name: 'productEdit', component: () => import('./views/products/create.vue'), props: true },
       { path: 'products/:id', name: 'productDetail', component: () => import('./views/products/detail.vue'), props: true },
       { path: 'tags/create', name: 'tagCreate', component: () => import('./views/CreateTagView.vue') },
       /*   { path: 'stores', component: () => import('./views/stores/index.vue') },

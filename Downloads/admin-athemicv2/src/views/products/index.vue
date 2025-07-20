@@ -29,6 +29,7 @@ const filteredProducts = computed(() => {
 
 function handleRowClick(product) {
   console.log('Product clicked:', product)
+  router.push({ name: 'productEdit', params: { id: product.id } })
 }
 
 function goToCreate() {
