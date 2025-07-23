@@ -415,3 +415,27 @@ aside nav a.active {
 .analytics-dashboard {
   max-width: 100%;
 } 
+
+/* STYLE -- ADMIN */
+
+h1 {
+  font-size: 4.07em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0em;
+}
+
+h2 {
+  font-size: 3.625em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0em;
+}
+
+h3 {
+  font-size: 3.1875em;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0em;
+}
+

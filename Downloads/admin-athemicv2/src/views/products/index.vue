@@ -116,4 +116,9 @@ onMounted(() => {
       Mostrando {{ filteredProducts.length }} de {{ totalProducts }} productos
     </div>
   </section>
-</template> 
+</template>
+
+<style lang="css" scoped>
+
+
+</style>
