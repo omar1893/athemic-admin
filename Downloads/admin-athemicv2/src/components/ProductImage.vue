@@ -12,4 +12,5 @@ const props = defineProps({
   src: String,
   alt: { type: String, default: 'Producto' }
 })
+console.log(props);
 </script> 

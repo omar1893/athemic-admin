@@ -21,4 +21,5 @@ import ProductStatusBadge from './ProductStatusBadge.vue'
 const props = defineProps({
   product: { type: Object, required: true }
 })
+console.log(props);
 </script> 

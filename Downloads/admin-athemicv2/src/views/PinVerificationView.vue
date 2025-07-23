@@ -4,7 +4,20 @@
       <h1 class="text-2xl font-bold mb-6 text-center">Verifica tu código</h1>
       <form @submit.prevent="handlePinSubmit" class="flex flex-col gap-4">
         <div class="flex gap-2 justify-center">
-          <input v-for="(digit, i) in 6" :key="i" v-model="pinDigits[i]" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]*" class="w-12 h-12 text-center border rounded-md text-xl font-bold focus:ring-2 focus:ring-indigo-500" @input="onInput(i)" />
+          <input 
+            v-for="(digit, i) in 6" 
+            :key="i" 
+            v-model="pinDigits[i]" 
+            maxlength="1" 
+            type="text" 
+            inputmode="numeric" 
+            pattern="[0-9]*" 
+            class="w-12 h-12 text-center border rounded-md text-xl font-bold focus:ring-2 focus:ring-indigo-500" 
+            :ref="el => pinInputRefs[i] = el"
+            @input="onInput(i)"
+            @paste="event => handlePaste(event, i)"
+            @keydown="event => handleKeydown(event, i)"
+          />
         </div>
         <button type="submit" class="w-full mt-2 px-4 py-2 rounded-md bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition" :disabled="loading || !isPinComplete">
           {{ loading ? 'Verificando...' : 'Confirmar' }}
@@ -22,6 +35,7 @@ const route = useRoute()
 const router = useRouter()
 const email = ref(route.query.email || '')
 const pinDigits = ref(['', '', '', '', '', ''])
+const pinInputRefs = ref([])
 const loading = ref(false)
 
 const isPinComplete = computed(() => pinDigits.value.every(d => d !== ''))
@@ -33,6 +47,25 @@ function onInput(i) {
   if (pinDigits.value[i] && i < 5) {
     const next = document.querySelectorAll('input[type=text]')[i+1]
     next && next.focus()
+  }
+}
+
+function handlePaste(event, index) {
+  event.preventDefault()
+  const paste = event.clipboardData?.getData('text') || ''
+  const digits = paste.replace(/\D/g, '').slice(0, 6 - index).split('')
+  digits.forEach((digit, i) => {
+    pinDigits.value[index + i] = digit
+    if (pinInputRefs.value[index + i]) {
+      pinInputRefs.value[index + i].focus()
+    }
+  })
+}
+
+function handleKeydown(event, index) {
+  if (event.key === 'Backspace' && !pinDigits.value[index] && index > 0) {
+    pinDigits.value[index - 1] = ''
+    pinInputRefs.value[index - 1]?.focus()
   }
 }
 

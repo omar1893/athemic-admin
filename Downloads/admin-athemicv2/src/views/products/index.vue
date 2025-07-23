@@ -57,7 +57,7 @@ async function fetchProducts(page = 1) {
       name: product.nombre,
       price: product.precio,
       quantity: product.contadorCarrito || 0,
-      image: '',
+      image: product.menuImage,
       store: 'Tienda',
       status: product.isActive ? 'Disponible' : 'No disponible'
     }))
