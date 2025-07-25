@@ -1,0 +1,22 @@
+:root {
+  --c-panel-background: var(--p-content-background);
+  --c-panel-border-color: var(--p-content-border-color);
+  --c-panel-color: var(--p-content-color);
+  --c-panel-header-color: var(--p-text-color);
+  --c-panel-border-radius: var(--p-content-border-radius);
+}
+
+:root[class='p-dark'] {
+  --c-panel-background: var(--p-content-background);
+  --c-panel-border-color: var(--p-content-border-color);
+  --c-panel-color: var(--p-content-color);
+  --c-panel-border-radius: var(--p-content-border-radius);
+}
+
+.c-panel {
+  border: 1px solid var(--c-panel-border-color);
+  border-radius: var(--c-panel-border-radius);
+  background: var(--c-panel-background);
+  color: var(--c-panel-color);
+  padding: 1.125rem;
+}
