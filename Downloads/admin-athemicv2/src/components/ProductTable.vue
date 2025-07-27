@@ -1,17 +1,17 @@
 <template>
   <div class="overflow-x-auto">
-    <table class="orders-enhanced-table">
-      <thead>
+    <table class="min-w-full">
+      <thead class="monserrat text-[#170033] font-semibold text-center text-base bg-[#875EF814]">
         <tr>
-          <th>Imagen</th>
-          <th>Producto</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>Tienda</th>
-          <th>Estado</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Imagen</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Producto</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Cantidad</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Precio</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Tienda</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Estado</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="monserrat text-[#170033] text-sm font-medium bg-white divide-y divide-gray-100 px-6 py-4 whitespace-nowrap">
         <ProductRow
           v-for="product in products"
           :key="product.id"

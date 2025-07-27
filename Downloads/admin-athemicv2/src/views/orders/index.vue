@@ -8,17 +8,18 @@ const orders = [
 </script>
 
 <template>
-  <div class="bg-white rounded-2xl pt-[24px] pr-[16px] pb-[24px] pl-[16px]">
-    <div class="poppins font-medium text-xl mb-6 text-gray-950">Órdenes</div>
+  
+  <div class="orders-enhanced-container">
+    <div class="poppins font-medium text-2xl mb-6 text-gray-950">Órdenes</div>
     <div class="overflow-x-auto bg-white rounded-lg">
       <table class="min-w-full">
-        <thead class="monserrat text-[#170033] font-semibold text-left text-base bg-[#875EF814]">
+        <thead class="monserrat text-[#170033] text-left text-base bg-[#875EF814]">
           <tr>
-            <th class="px-6 py-3 tracking-wider">ID</th>
-            <th class="px-6 py-3 tracking-wider">Cliente</th>
-            <th class="px-6 py-3 tracking-wider">Fecha</th>
-            <th class="px-6 py-3 tracking-wider">Estado</th>
-            <th class="px-6 py-3 tracking-wider">Total</th>
+            <th class="px-6 py-3 font-semibold tracking-wider">ID</th>
+            <th class="px-6 py-3 font-semibold tracking-wider">Cliente</th>
+            <th class="px-6 py-3 font-semibold tracking-wider">Fecha</th>
+            <th class="px-6 py-3 font-semibold tracking-wider">Estado</th>
+            <th class="px-6 py-3 font-semibold tracking-wider">Total</th>
           </tr>
         </thead>
         <tbody class="monserrat text-[#170033] text-sm font-medium bg-white divide-y divide-gray-100">
@@ -57,5 +58,4 @@ const orders = [
 .poppins {
   font-family: 'Poppins', sans-serif;
 }
-
 </style>

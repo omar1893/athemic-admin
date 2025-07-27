@@ -11,7 +11,7 @@ const props = defineProps({
 })
 const badgeClass = computed(() => {
   if (props.status === 'Disponible') {
-    return 'orders-enhanced-badge entregado';
+    return 'px-2 py-1 rounded-full border-1 bg-green-100 text-green-600 entregado';
   }
   // Puedes agregar más estados si es necesario
   return 'orders-enhanced-badge';

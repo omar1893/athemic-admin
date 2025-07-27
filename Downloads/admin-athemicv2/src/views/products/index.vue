@@ -87,21 +87,22 @@ onMounted(() => {
 <template>
   <section class="orders-enhanced-container">
     <div class="flex items-center justify-between mb-6">
-      <h1 class="text-2xl font-bold text-gray-900">Productos</h1>
-      <button @click="goToCreate" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-lg shadow-sm flex items-center gap-2 transition">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 4v16m8-8H4"/></svg>
-        Agregar Producto
+      <div class="poppins font-medium text-2xl mb-6 text-gray-950">Productos</div>
+      <button @click="goToCreate" class="monserrat text-sm bg-[#875EF8] rounded-full text-white font-semibold px-5 py-2 flex items-center gap-2">
+        Nuevo Producto
       </button>
     </div>
+    <div>
     <ProductFilters
       :stores="stores"
       v-model:search="search"
       v-model:store="store"
-      search-placeholder="Buscar productos..."
+      search-placeholder="Buscar tienda"
     />
+  </div>
     <ProductTable :products="filteredProducts" @row-click="handleRowClick" />
-    <div class="orders-enhanced-pagination mt-4">
-      <button @click="goToPage(currentPage - 1)" :disabled="currentPage <= 1">&lt;</button>
+    <div class="orders-enhanced-pagination text-sm monserrat mt-4">
+      <button class="text-[#170033]" @click="goToPage(currentPage - 1)" :disabled="currentPage <= 1">&lt; Anterior</button>
       <button 
         v-for="page in totalPages" 
         :key="page"
@@ -110,15 +111,23 @@ onMounted(() => {
       >
         {{ page }}
       </button>
-      <button @click="goToPage(currentPage + 1)" :disabled="currentPage >= totalPages">&gt;</button>
+      <button @click="goToPage(currentPage + 1)" :disabled="currentPage >= totalPages">Siguiente &gt;</button>
     </div>
-    <div class="orders-enhanced-summary">
+    <div class="monserrat orders-enhanced-summary">
       Mostrando {{ filteredProducts.length }} de {{ totalProducts }} productos
     </div>
   </section>
 </template>
 
 <style lang="css" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+.monserrat {
+  font-family: 'Montserrat', sans-serif;
+}
 
+.poppins {
+  font-family: 'Poppins', sans-serif;
+}
 </style>
