@@ -1,5 +1,5 @@
 <template>
-  <aside class="w-72 bg-white shadow-md px-6 py-8 fixed inset-y-0 left-0 z-20">
+  <aside class="w-[299px] bg-white shadow-md px-6 py-8 fixed inset-y-0 left-0 z-20">
     <!-- Top Title -->
     <div class="mb-8">
       <h1 class="text-2xl font-bold text-indigo-900"><img src="../assets/logo/athemic.svg"></h1>
@@ -151,8 +151,6 @@ const selectedCategory = ref('') // Inicialmente nada seleccionado
 function setActiveCategory(category) {
   selectedCategory.value = category
 }
-
-
 
 </script>
 
