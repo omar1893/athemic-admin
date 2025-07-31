@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50">
     <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-6 text-center">Verifica tu código</h1>
+      <div class="poppins font-medium text-2xl mb-6 text-gray-950">Verifica tu código</div>
       <form @submit.prevent="handlePinSubmit" class="flex flex-col gap-4">
-        <div class="flex gap-2 justify-center">
+        <div class="flex monserrat gap-2 justify-center">
           <input v-for="(digit, i) in 6" :key="i" v-model="pinDigits[i]" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]*" class="w-12 h-12 text-center border rounded-md text-xl font-bold focus:ring-2 focus:ring-indigo-500" @input="onInput(i)" />
         </div>
-        <button type="submit" class="w-full mt-2 px-4 py-2 rounded-md bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition" :disabled="loading || !isPinComplete">
+        <button type="submit" class=" monserrat mt-2 px-4 py-2 rounded-[16px] bg-[#875EF8] inline-block self-center text-white font-bold" :disabled="loading || !isPinComplete">
           {{ loading ? 'Verificando...' : 'Confirmar' }}
         </button>
       </form>

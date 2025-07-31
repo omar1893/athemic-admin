@@ -88,7 +88,7 @@ onMounted(() => {
   <section class="orders-enhanced-container">
     <div class="flex items-center justify-between mb-6">
       <div class="poppins font-medium text-2xl mb-6 text-gray-950">Productos</div>
-      <button @click="goToCreate" class="monserrat text-sm bg-[#875EF8] rounded-full text-white font-semibold px-5 py-2 flex items-center gap-2">
+      <button @click="goToCreate" class="monserrat text-sm bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-white font-semibold px-5 py-2 flex items-center gap-2">
         Nuevo Producto
       </button>
     </div>

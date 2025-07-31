@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50">
     <div class="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-      <h1 class="text-2xl font-bold mb-6 text-center">Iniciar sesión</h1>
-      <form @submit.prevent="handleLogin" class="flex flex-col gap-4">
+      <div class="poppins font-medium text-2xl mb-6 text-gray-950">Iniciar sesión</div>
+      <form @submit.prevent="handleLogin" class="flex monserrat flex-col gap-4">
         <div>
-          <label for="email" class="block text-sm font-medium mb-1">Email</label>
-          <input id="email" v-model="email" type="email" required placeholder="Ingresa tu email" class="block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
+          <label for="email" class="block text-base font-semibold mb-1">Email</label>
+          <input id="email" v-model="email" type="email" required placeholder="Ingresa tu email" class="block w-full rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
         </div>
-        <button type="submit" class="w-full mt-2 px-4 py-2 rounded-md bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition" :disabled="loading">
+        <button type="submit" class="mt-2 px-4 py-2 rounded-[16px] bg-[#875EF8] inline-block self-center text-white font-bold" :disabled="loading">
           {{ loading ? 'Enviando...' : 'Enviar código' }}
         </button>
       </form>

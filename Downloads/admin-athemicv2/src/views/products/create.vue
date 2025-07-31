@@ -1,16 +1,21 @@
 <template>
   <div class="max-w-2xl mx-auto py-8">
-    <BackButton>Volver a productos</BackButton>
-    <h1 class="text-2xl font-semibold mb-6">{{ isEditing ? 'Editar producto' : 'Crear producto' }}</h1>
+    <BackButton></BackButton>
+    <div class="items-center mb-5 flex justify-between">
+      <div class="monserrat text-2xl font-semibold">{{ isEditing ? 'Editar producto' : 'Nuevo producto' }}</div>
+      <div class="monserrat">
+        <span class="m-5 font-semibold text-[#170033] text-sm">cancelar</span>
+        <button type="submit"
+          class="px-4 py-3 rounded-full text-white text-sm font-semibold bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed">
+          {{ isEditing ? 'Actualizar Producto' : 'Crear Producto' }}
+        </button>
+      </div>
+    </div>
+
     <div v-if="loading" class="flex items-center justify-center py-8">
       <span class="text-lg text-gray-500">Cargando...</span>
     </div>
-    <ProductForm 
-      v-else 
-      :initial-data="productData" 
-      :is-editing="isEditing"
-      @submit="handleSubmit" 
-    />
+    <ProductForm v-else :initial-data="productData" :is-editing="isEditing" @submit="handleSubmit" />
   </div>
 </template>
 
@@ -34,14 +39,14 @@ const isEditing = computed(() => !!productId)
 
 const fetchProduct = async () => {
   if (!productId) return
-  
+
   try {
     loading.value = true
     const token = localStorage.getItem('accessToken')
-    const response = await productsService.getById(productId, { 
-      headers: { Authorization: `Bearer ${token}` } 
+    const response = await productsService.getById(productId, {
+      headers: { Authorization: `Bearer ${token}` }
     })
-    
+
     if (response.data) {
       productData.value = {
         name: response.data.nombre,
@@ -67,7 +72,7 @@ const handleSubmit = async (product) => {
     const token = localStorage.getItem('accessToken')
     const sellerId = sellerStore.seller?.id
     if (!token || !sellerId) throw new Error('No autenticado')
-    
+
     const payload = {
       nombre: product.name,
       precio: product.price,
@@ -77,21 +82,21 @@ const handleSubmit = async (product) => {
       menuImage: product.menuImage || '',
       detailImages: product.detailImages || []
     }
-    
+
     if (isEditing.value) {
       // Update existing product
-      await productsService.update(productId, payload, { 
-        headers: { Authorization: `Bearer ${token}` } 
+      await productsService.update(productId, payload, {
+        headers: { Authorization: `Bearer ${token}` }
       })
       alert('Producto actualizado correctamente')
     } else {
       // Create new product
-      await productsService.create(payload, { 
-        headers: { Authorization: `Bearer ${token}` } 
+      await productsService.create(payload, {
+        headers: { Authorization: `Bearer ${token}` }
       })
       alert('Producto creado correctamente')
     }
-    
+
     router.push({ name: 'products' })
   } catch (e) {
     console.error('Error saving product:', e)
@@ -104,4 +109,4 @@ onMounted(() => {
     fetchProduct()
   }
 })
-</script> 
+</script>
