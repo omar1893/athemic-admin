@@ -1,9 +1,8 @@
 <template>
   <aside class="w-[299px] bg-white shadow-md px-6 py-8 fixed inset-y-0 left-0 z-20">
-    <!-- Top Title -->
-    <div class="mb-8">
+    <div :class="selectedCategory === 'home' ? 'SelectedAdmin' : ''" @click="setActiveCategory()">
     <router-link to="/home">
-      <h1 class="text-2xl font-bold text-indigo-900"><img src="../assets/logo/athemic.svg"></h1>
+      <div class="text-2xl font-bold text-indigo-900 mb-8"><img src="../assets/logo/athemic.svg"></div>
     </router-link>
     </div>
     <!-- Navigation Menu -->
