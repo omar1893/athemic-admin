@@ -2,7 +2,9 @@
   <aside class="w-[299px] bg-white shadow-md px-6 py-8 fixed inset-y-0 left-0 z-20">
     <!-- Top Title -->
     <div class="mb-8">
+    <router-link to="/home">
       <h1 class="text-2xl font-bold text-indigo-900"><img src="../assets/logo/athemic.svg"></h1>
+    </router-link>
     </div>
     <!-- Navigation Menu -->
     <nav class="flex-1">
@@ -22,8 +24,7 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'products' ? 'SelectedAdmin' : ''" @click="setActiveCategory('products')">
-          <router-link to="/products"
-            class="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-full">
+          <router-link to="/products" class="flex items-center gap-3 px-3 py-2 text-gray-700 rounded-full">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path
@@ -35,8 +36,7 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'tag' ? 'SelectedAdmin' : ''" @click="setActiveCategory('tag')">
-          <router-link to="/tags/create"
-            class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+          <router-link to="/tags/create" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <!-- Heroicon: Plus (placeholder) -->
               <svg class="iconAdmin w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -47,8 +47,7 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'stores' ? 'SelectedAdmin' : ''" @click="setActiveCategory('stores')">
-          <router-link to="/stores"
-            class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+          <router-link to="/stores" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path
@@ -60,8 +59,7 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'staff' ? 'SelectedAdmin' : ''" @click="setActiveCategory('staff')">
-          <router-link to="/staff"
-            class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+          <router-link to="/staff" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path
@@ -73,8 +71,29 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'users' ? 'SelectedAdmin' : ''" @click="setActiveCategory('users')">
-          <router-link to="/users"
-            class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+
+          <router-link to="/delivery" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+            <span class="w-5 h-5 flex items-center justify-center">
+              <svg width="21" height="21" viewBox="0 0 21 21" fill="none">
+                <g clip-path="url(#clip0_938_1334)">
+                  <path
+                    d="M12.8926 2.94141C13.9971 2.94141 14.8926 3.83684 14.8926 4.94141V5.44141H16.7158C17.8052 5.44142 18.8088 6.03213 19.3379 6.98438L21.0146 10.0029L21.1025 10.1729C21.2931 10.5742 21.3926 11.014 21.3926 11.46V13.9414C21.3926 15.486 20.2251 16.7566 18.7246 16.9219C18.318 18.0966 17.2056 18.9414 15.8926 18.9414C14.583 18.9414 13.4718 18.1015 13.0625 16.9316C13.0064 16.9364 12.9499 16.9414 12.8926 16.9414H9.71875C9.30664 18.1061 8.19843 18.9414 6.89258 18.9414C5.58673 18.9414 4.47852 18.1061 4.06641 16.9414H2.89258C1.78801 16.9414 0.892578 16.046 0.892578 14.9414L0.892578 4.94141C0.892578 3.83684 1.78801 2.94141 2.89258 2.94141L12.8926 2.94141ZM6.89258 14.9414C6.34029 14.9414 5.89258 15.3891 5.89258 15.9414C5.89258 16.4937 6.34029 16.9414 6.89258 16.9414C7.44486 16.9414 7.89258 16.4937 7.89258 15.9414C7.89258 15.3891 7.44486 14.9414 6.89258 14.9414ZM15.8926 14.9414C15.3403 14.9414 14.8926 15.3891 14.8926 15.9414C14.8926 16.4937 15.3403 16.9414 15.8926 16.9414C16.4449 16.9414 16.8926 16.4937 16.8926 15.9414C16.8926 15.3891 16.4449 14.9414 15.8926 14.9414ZM2.89258 14.9414H4.06641C4.47852 13.7767 5.58673 12.9414 6.89258 12.9414C8.19843 12.9414 9.30664 13.7767 9.71875 14.9414H12.8926V4.94141L2.89258 4.94141L2.89258 14.9414ZM14.8926 13.1152C15.2056 13.0045 15.5416 12.9414 15.8926 12.9414C17.18 12.9414 18.2745 13.7536 18.7002 14.8926C19.1019 14.7628 19.3926 14.3863 19.3926 13.9414V11.46C19.3926 11.3326 19.3682 11.2065 19.3213 11.0889L19.2666 10.9736L17.5898 7.95605C17.4135 7.6386 17.079 7.44142 16.7158 7.44141H14.8926V13.1152Z"
+                    fill="black" />
+                </g>
+                <defs>
+                  <clipPath id="clip0_938_1334">
+                    <rect width="20" height="20" fill="white" transform="translate(0.892578 0.941406)" />
+                  </clipPath>
+                </defs>
+              </svg>
+
+              <!-- <img src="../assets/icons/user.svg"> -->
+            </span>
+            <span class="categoryAdmin monserrat">Repartidores</span>
+          </router-link>
+
+
+          <router-link to="/users" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin" width="16" height="17" viewBox="0 0 16 17" fill="none" stroke="currentColor">
                 <path
@@ -90,8 +109,7 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'analytics' ? 'SelectedAdmin' : ''" @click="setActiveCategory('analytics')">
-          <router-link to="/analytics"
-            class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+          <router-link to="/analytics" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin" width="12" height="18" viewBox="0 0 12 18" fill="none" stroke="currentColor">
                 <path
@@ -104,8 +122,7 @@
           </router-link>
         </li>
         <li :class="selectedCategory === 'support' ? 'SelectedAdmin' : ''" @click="setActiveCategory('support')">
-          <router-link to="/support"
-            class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
+          <router-link to="/support" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor">
                 <path
@@ -124,8 +141,7 @@
 
     <!-- Log out and copyright -->
     <div class="mt-8">
-      <a href="#" 
-        class="flex items-center  gap-2 text-indigo-900 font-semibold px-3 py-2 rounded-full bg-gray-200">
+      <a href="#" class="flex items-center  gap-2 text-indigo-900 font-semibold px-3 py-2 rounded-full bg-gray-200">
         <span class="poppins font-medium text-[#170033]">Log out</span>
         <span class=" ml-auto w-5 h-5 flex items-center justify-center">
           <!-- Heroicon: Logout (placeholder) -->

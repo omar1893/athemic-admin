@@ -45,7 +45,7 @@ async function handlePinSubmit() {
     console.log(res)
     if (res && res.data.accessToken) {
       localStorage.setItem('accessToken', res.data.accessToken)
-      router.push({ name: 'orders' })
+      router.push({ name: 'home' })
     } else {
       alert('Respuesta inesperada del servidor')
     }
