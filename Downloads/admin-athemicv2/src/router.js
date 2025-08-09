@@ -15,11 +15,12 @@ const routes = [
       { path: 'products/:id/edit', name: 'productEdit', component: () => import('./views/products/create.vue'), props: true },
       { path: 'products/:id', name: 'productDetail', component: () => import('./views/products/detail.vue'), props: true },
       { path: 'tags/create', name: 'tagCreate', component: () => import('./views/CreateTagView.vue') },
-      /*   { path: 'stores', component: () => import('./views/stores/index.vue') },
+      { path: 'stores', component: () => import('./views/stores/index.vue') },
       { path: 'staff', component: () => import('./views/staff/index.vue') },
+      { path: 'delivery', component: () => import('./views/delivery/index.vue') },
       { path: 'users', component: () => import('./views/users/index.vue') },
       { path: 'analytics', component: () => import('./views/analytics/index.vue') },
-      { path: 'support', component: () => import('./views/support/index.vue') }, */
+      // { path: 'support', component: () => import('./views/support/index.vue') }, */
     ]
   }
 ]

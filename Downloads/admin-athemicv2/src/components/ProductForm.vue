@@ -3,18 +3,19 @@
     @submit.prevent="handleSubmit">
     <span class="text-black-600">Información del producto</span>
     <div class="text-[#170033]">
-      <div>
-        <label for="product-name" class="block text-sm mb-1">Nombre del Producto</label>
+      <div class="flex gap-4 mb-5">
+      <div class="w-full flex flex-col">
+        <label for="product-name" class="text-sm mb-1">Tienda</label>
         <input id="product-name" v-model="form.name" type="text" required placeholder="Ej: Auriculares Inalámbricos Pro"
-          class="block w-full rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
+          class="rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
       </div>
-      <div>
-        <label for="product-description" class="block text-sm mb-1">Descripción</label>
-        <textarea id="product-description" v-model="form.description" required rows="4"
-          placeholder="Descripción detallada del producto..."
-          class="block w-full rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"></textarea>
+      <div class="w-full flex flex-col">
+        <label for="product-name" class="text-sm mb-1">Nombre del Producto</label>
+        <input id="product-name" v-model="form.name" type="text" required placeholder="Ej: Auriculares Inalámbricos Pro"
+          class="rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
       </div>
-      <div class="flex flex-col sm:flex-row gap-4">
+    </div>
+      <div class="flex flex-col sm:flex-row gap-4 mb-5">
         <div class="flex-1">
           <label for="product-price" class="block text-sm mb-1">Precio</label>
           <div class="relative">
@@ -32,6 +33,12 @@
               class="block w-full rounded-[16px] border border-gray-300 pl-8 pr-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
           </div>
         </div>
+      </div>
+      <div>
+        <label for="product-description" class="block text-sm mb-1">Descripción</label>
+        <textarea id="product-description" v-model="form.description" required rows="4"
+          placeholder="Descripción detallada del producto..."
+          class="block w-full rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"></textarea>
       </div>
     </div>
     <div>

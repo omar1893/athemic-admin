@@ -1,9 +1,9 @@
 <script setup>
 const orders = [
-  { id: 'ORD-001', customer: 'Juan Pérez', date: '2024-07-01', status: 'Completada', total: 120.50 },
-  { id: 'ORD-002', customer: 'Ana Gómez', date: '2024-07-02', status: 'Pendiente', total: 75.00 },
-  { id: 'ORD-003', customer: 'Carlos Ruiz', date: '2024-07-03', status: 'Cancelada', total: 0.00 },
-  { id: 'ORD-004', customer: 'María López', date: '2024-07-04', status: 'Completada', total: 210.99 },
+  { id: 'ORD-001', customer: 'Adidas', date: '2024-07-01', status: 'Completada', total: 120.50 },
+  { id: 'ORD-002', customer: 'Zara', date: '2024-07-02', status: 'Pendiente', total: 75.00 },
+  { id: 'ORD-003', customer: 'Nike', date: '2024-07-03', status: 'Cancelada', total: 0.00 },
+  { id: 'ORD-004', customer: 'Juan Valdez', date: '2024-07-04', status: 'Completada', total: 210.99 },
 ]
 </script>
 
@@ -42,21 +42,20 @@ const orders = [
 
     </div>
 
+    <div class="rounded-xl overflow-hidden">
     <table class="min-w-full">
       <thead class="monserrat text-[#170033] text-left text-base bg-[#875EF814]">
         <tr>
-          <th class="px-6 py-3 font-semibold tracking-wider">ID</th>
-          <th class="px-6 py-3 font-semibold tracking-wider">Cliente</th>
-          <th class="px-6 py-3 font-semibold tracking-wider">Fecha</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Número de orden</th>
           <th class="px-6 py-3 font-semibold tracking-wider">Estado</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Fecha</th>
+          <th class="px-6 py-3 font-semibold tracking-wider">Tienda</th>
           <th class="px-6 py-3 font-semibold tracking-wider">Total</th>
         </tr>
       </thead>
       <tbody class="monserrat text-[#170033] text-sm font-medium bg-white divide-y divide-gray-100">
         <tr v-for="order in orders" :key="order.id">
           <td class="px-6 py-4 whitespace-nowrap">{{ order.id }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">{{ order.customer }}</td>
-          <td class="px-6 py-4 whitespace-nowrap">{{ order.date }}</td>
           <td class="px-6 py-4 whitespace-nowrap">
             <span :class="[
               'px-2 py-1 rounded-full',
@@ -67,11 +66,14 @@ const orders = [
               {{ order.status }}
             </span>
           </td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ order.date }}</td>
+          <td class="px-6 py-4 whitespace-nowrap">{{ order.customer }}</td>
           <td class="monserrat font-medium text-sm px-6 py-4 whitespace-nowrap">${{ order.total.toFixed(2) }}</td>
         </tr>
       </tbody>
     </table>
   </div>
+  </div>  
 </template>
 
 <style lang="css" scoped>

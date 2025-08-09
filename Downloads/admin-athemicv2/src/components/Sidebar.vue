@@ -69,7 +69,8 @@
             <span class="categoryAdmin monserrat">Dependientes</span>
           </router-link>
         </li>
-        <li :class="selectedCategory === 'users' ? 'SelectedAdmin' : ''" @click="setActiveCategory('users')">
+
+        <li :class="selectedCategory === 'delivery' ? 'SelectedAdmin' : ''" @click="setActiveCategory('delivery')">
 
           <router-link to="/delivery" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
@@ -90,8 +91,8 @@
             </span>
             <span class="categoryAdmin monserrat">Repartidores</span>
           </router-link>
-
-
+        </li>
+<li :class="selectedCategory === 'users' ? 'SelectedAdmin' : ''" @click="setActiveCategory('users')">
           <router-link to="/users" class="flex items-center gap-3 px-3 py-2 rounded-full text-gray-700">
             <span class="w-5 h-5 flex items-center justify-center">
               <svg class="iconAdmin" width="16" height="17" viewBox="0 0 16 17" fill="none" stroke="currentColor">

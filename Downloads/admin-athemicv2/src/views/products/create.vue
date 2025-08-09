@@ -7,7 +7,7 @@
         <span class="m-5 font-semibold text-[#170033] text-sm">cancelar</span>
         <button type="submit"
           class="px-4 py-3 rounded-full text-white text-sm font-semibold bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed">
-          {{ isEditing ? 'Actualizar Producto' : 'Crear Producto' }}
+          {{ isEditing ? 'Editar Producto' : 'Crear Producto' }}
         </button>
       </div>
     </div>

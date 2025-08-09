@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-auto">
+  <div class="rounded-xl overflow-hidden">
     <table class="min-w-full">
       <thead class="monserrat text-[#170033] font-semibold text-center text-base bg-[#875EF814]">
         <tr>
