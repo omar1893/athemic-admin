@@ -1,3 +1,8 @@
+<script setup>
+import LineChart from '../../components/LineChart.vue'
+import StoreComparison from '../../components/StoreComparison.vue'
+</script>
+
 <template>
 
   <div class="monserrat flex gap-3 justify-center">
@@ -12,7 +17,7 @@
         </svg>
       </div>
       <div class="flex justify-between w-full">
-        <span class="text-sm font-semibold"> Ventas totales </span>
+        <span class="text-sm font-semibold"> Ventas Totales </span>
         <span class="text-xs"> 23.5% vs anterior</span>
       </div>
     </div>
@@ -31,7 +36,7 @@
 
       </div>
       <div class="flex justify-between w-full">
-        <span class="text-sm font-semibold"> Pedidos totales </span>
+        <span class="text-sm font-semibold"> Pedidos Totales </span>
         <span class="text-xs"> 23.5% vs anterior</span>
       </div>
     </div>
@@ -51,35 +56,189 @@
       </div>
 
       <div class="flex justify-between w-full">
-        <span class="text-sm font-semibold"> Clientes totales </span>
+        <span class="text-sm font-semibold"> Clientes Totales </span>
         <span class="text-xs"> 23.5% vs anterior</span>
       </div>
     </div>
   </div>
 
-  <div class="monserrat orders-enhanced-container text-[#170033] font-semibold">
+  <div class="monserrat orders-enhanced-container text-[#170033]">
     <div>
-      <span>Tendencia de ventas</span>
+
+      <div class="flex justify-between">
+        <span class="font-semibold">Tendencia de Ventas</span>
+        <select class="poppins border-2 border-gray-100 rounded-full text-[#170033] py-1 px-2">
+          <option class="rounded-full" value="Filtrar por fecha">Filtrar fecha</option>
+        </select>
+      </div>
+
+      <span class="text-sm font-medium">Obtén una visión clara de los picos de actividad</span>
+      <!-- placeholder de gráfico -->
+      <LineChart class="mt-2" />
     </div>
   </div>
 
-  <div class="flex">
-    <div class="monserrat orders-enhanced-container text-[#170033] font-semibold">
-      <div>
-        <span>Comparativa de tiendas</span>
+  <div class="flex my-6 mx-auto max-w-[900px] gap-5">
+
+    <div class=" monserrat w-1/2 flex py-4 px-2 bg-white rounded-xl items-start flex-wrap">
+
+      <div class="w-full h-10 flex justify-between items-center">
+        <span class="font-semibold">Comparativa de Tiendas</span>
+        <select class="border-2 border-gray-100 rounded-full text-[#170033] text-xs font-medium py-1 px-2">
+          <option class="rounded-full" value="Filtrar por fecha">Filtrar fecha</option>
+        </select>
+      </div>
+
+      <div class=" w-full">
+        <StoreComparison class="monserrat" />
       </div>
     </div>
-    <div class="monserrat orders-enhanced-container text-[#170033] font-semibold">
-      <div>
-        <span>Productos más vendidos</span>
-      </div>
+
+    <div class="monserrat flex py-4 px-2 bg-white rounded-xl flex-wrap justify-between">
+      <span class="font-semibold mb-5">Productos Más Vendidos</span>
+      <ul>
+        <li class="mb-4">
+          <div class="font-semibold text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">1</span>Auriculares Inalámbricos Pro
+          </div>
+          <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
+        </li>
+        <li class="mb-4">
+          <div class="font-semibold text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">2</span>Funda Iphone 14 Pro</div>
+          <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
+        </li>
+        <li class="mb-4">
+          <div class="font-semibold text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">3</span>Cable USB-C (2m)</div>
+          <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
+        </li>
+        <li class="mb-4">
+          <div class="font-semibold text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">4</span>Cargador Inalámbrico 15W</div>
+          <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
+        </li>
+        <li class="mb-4">
+          <div class="font-semibold text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">5</span>Altavoz Bluetooth Premium</div>
+          <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
+        </li>
+      </ul>
     </div>
   </div>
 
   <div class="monserrat orders-enhanced-container text-[#170033] font-semibold">
-    <div>
-      <span>Actividad reciente</span>
+    <div class="mb-5">
+      <span>Actividad Reciente</span>
     </div>
-  </div>
 
+    <ul>
+
+      <li>
+        <div class="flex mb-5">
+          <div class="mr-1">
+            <div class="rounded-[200px] p-1 bg-[#F3EFFE] p-1"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
+                  stroke="#875EF8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-col">
+            <div>Nueva venta: $123,00</div>
+            <div class="text-base font-light text-[#170033]">Tieda: AudioTech</div>
+          </div>
+          <div class="ml-auto font-light">
+            <span>5 de mayo de 2023</span>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex mb-5">
+          <div class="mr-1">
+            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
+                  stroke="#875EF8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-col">
+            <div>Nueva venta: $123,00</div>
+            <div class="text-base font-light text-[#170033]">Tieda: AudioTech</div>
+          </div>
+          <div class="ml-auto font-light">
+            <span>5 de mayo de 2023</span>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex mb-5">
+          <div class="mr-1">
+            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
+                  stroke="#875EF8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-col">
+            <div>Nueva venta: $123,00</div>
+            <div class="text-base font-light text-[#170033]">Tieda: AudioTech</div>
+          </div>
+          <div class="ml-auto font-light">
+            <span>5 de mayo de 2023</span>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex mb-5">
+          <div class="mr-1">
+            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
+                  stroke="#875EF8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-col">
+            <div>Nueva venta: $123,00</div>
+            <div class="text-base font-light text-[#170033]">Tieda: AudioTech</div>
+          </div>
+          <div class="ml-auto font-light">
+            <span>5 de mayo de 2023</span>
+          </div>
+        </div>
+      </li>
+
+      <li>
+        <div class="flex mb-5">
+          <div class="mr-1">
+            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
+                  stroke="#875EF8" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex-col">
+            <div>Nueva venta: $123,00</div>
+            <div class="text-base font-light text-[#170033]">Tieda: AudioTech</div>
+          </div>
+          <div class="ml-auto font-light">
+            <span>5 de mayo de 2023</span>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
 </template>
