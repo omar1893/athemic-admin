@@ -174,13 +174,6 @@ function setActiveCategory(category) {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-.monserrat {
-  font-family: 'Montserrat', sans-serif;
-}
-
-.poppins {
-  font-family: 'Poppins', sans-serif;
-}
 
 .iconAdmin {
   stroke: #170033;

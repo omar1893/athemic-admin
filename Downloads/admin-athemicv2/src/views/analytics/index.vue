@@ -4,7 +4,6 @@ import StoreComparison from '../../components/StoreComparison.vue'
 </script>
 
 <template>
-
   <div class="monserrat flex gap-3 justify-center">
 
     <div class="bg-white rounded-xl w-[18rem] h-[6rem] flex flex-wrap justify-between px-5 py-2">
@@ -238,7 +237,6 @@ import StoreComparison from '../../components/StoreComparison.vue'
           </div>
         </div>
       </li>
-
     </ul>
   </div>
 </template>

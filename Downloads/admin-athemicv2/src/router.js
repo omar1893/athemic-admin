@@ -20,7 +20,7 @@ const routes = [
       { path: 'delivery', component: () => import('./views/delivery/index.vue') },
       { path: 'users', component: () => import('./views/users/index.vue') },
       { path: 'analytics', component: () => import('./views/analytics/index.vue') },
-      // { path: 'support', component: () => import('./views/support/index.vue') }, */
+      { path: 'support', component: () => import('./views/support/index.vue') },
     ]
   }
 ]

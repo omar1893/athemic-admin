@@ -34,7 +34,7 @@ onMounted(async () => {
   </div>
   <div v-else class="min-h-screen bg-gray-50">
     <Sidebar />
-    <main class="ml-72 p-8">
+    <main class="ml-75 p-8">
       <router-view />
     </main>
   </div>
