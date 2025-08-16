@@ -6,7 +6,7 @@
 
         <div class="text-base monserrat text-[#170033] font-semibold">
 
-            <div class="flex gap-5 mb-3">
+            <div class="flex gap-5 mb-3 justify-center items-center">
                 <router-link to="/orders"
                     class="no-underline bg-white rounded-[16px] h-25 w-50 flex flex-col justify-center items-center">
                     <svg class="iconAdmin w-8 h-8" fill="none" stroke="#875EF8" stroke-width="2" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
                 </router-link>
             </div>
 
-            <div class="flex gap-5 mt-3">
+            <div class="flex gap-5 mt-3 justify-center items-center">
                 <router-link to="/delivery"
                     class="no-underline bg-white rounded-[16px] h-25 w-50 flex flex-col justify-center items-center">
                     <svg class="iconAdmin w-8 h-8" viewBox="0 0 21 21" fill="none" stroke-width="0">

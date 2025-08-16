@@ -13,7 +13,7 @@
           class="block w-full rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#170033] focus:border-[#170033] text-sm" />
       </div>
       <button type="submit"
-        class="mt-2 px-4 py-2 rounded-[16px] bg-[#875EF8] inline-block self-center text-white font-bold">Crear
+        class="mt-2 px-4 py-2 rounded-full bg-[#875EF8] inline-block self-center text-white font-bold">Crear
         Tag</button>
     </form>
   </div>

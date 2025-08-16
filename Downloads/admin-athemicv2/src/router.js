@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Orders from './views/orders/index.vue'
+import OrdenDetalle from './views/orders/detail.vue'
 
 const routes = [
   { path: '/', redirect: { name: 'login' } },
@@ -9,7 +11,17 @@ const routes = [
     component: () => import('./views/DashboardLayout.vue'),
     children: [
       { path: 'home', name: 'home', component: () => import('./views/home.vue') },
-      { path: 'orders', name: 'orders', component: () => import('./views/orders/index.vue') },
+      {
+        path: 'orders',
+        name: 'orders',
+        component: Orders
+      },
+      {
+        path: 'orders/:id',
+        name: 'OrdenDetalle',
+        component: OrdenDetalle,
+        props: true
+      },
       { path: 'products', name: 'products', component: () => import('./views/products/index.vue') },
       { path: 'products/create', name: 'productCreate', component: () => import('./views/products/create.vue') },
       { path: 'products/:id/edit', name: 'productEdit', component: () => import('./views/products/create.vue'), props: true },

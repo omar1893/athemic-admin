@@ -41,7 +41,7 @@ h1 {
   line-height: 1.1;
 }
 
-button {
+/* button {
   border-radius: 200px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -50,7 +50,7 @@ button {
   font-family: inherit;
   cursor: pointer;
   transition: border-color 0.25s;
-}
+} */
 
 .card {
   padding: 2em;
@@ -271,6 +271,18 @@ body {
 .orders-enhanced-container {
   background: #fff;
   border-radius: 1.25rem;
+  padding: 2.5rem 2rem;
+  margin: 24px auto;
+  max-width: 900px;
+}
+
+.orders-enhanced-no-white {
+  padding: 2.5rem 2rem;
+  margin: 24px auto;
+  max-width: 900px;
+}
+
+.container-fix {
   padding: 2.5rem 2rem;
   margin: 24px auto;
   max-width: 900px;

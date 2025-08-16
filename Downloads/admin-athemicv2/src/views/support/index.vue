@@ -98,16 +98,14 @@ const seleccionarConversacion = (convo) => {
               class="bg-white placeholder:font-medium placeholder-opacity-100 border-2 border-[#17003314] rounded-full placeholder:text-[#170033] py-1 pl-8" />
           </div>
           <div
-            class=" text-sm bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-white">
+            class=" text-sm bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-white py-1 px-1">
             <button>Nuevo chat</button>
           </div>
         </div>
-
       </div>
 
       <!-- Conversaciones dentro de la lista-->
       <div>
-
         <ul>
           <li v-for="convo in conversaciones" :key="convo.id" @click="seleccionarConversacion(convo)"
             class="cursor-pointer p-2 rounded-lg hover:bg-[#875EF820]">
