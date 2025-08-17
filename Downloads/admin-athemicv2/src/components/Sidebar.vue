@@ -162,7 +162,7 @@
 // Sidebar del admin
 import { ref } from 'vue'
 
-const selectedCategory = ref('') // Inicialmente nada seleccionado
+const selectedCategory = ref('')
 
 function setActiveCategory(category) {
   selectedCategory.value = category

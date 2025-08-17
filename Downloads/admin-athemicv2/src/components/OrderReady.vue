@@ -1,14 +1,13 @@
 <template>
+
     <!-- ESTADO DE PEDIDO -->
     <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
         <div class="mb-3 text-base font-semibold">Estado de pedido</div>
-
         <div class="relative">
-
-            <div class="absolute left-6 h-30 w-[2px] bg-[#170033]/8"></div>
+            <div class="absolute left-6 h-40 w-[2px] bg-[#170033]/8"></div>
 
             <!-- ORDEN RECIBIDA -->
-            <div class="flex items-start justify-between gap-5 mb-4">
+            <div class="flex items-start justify-between gap-5 h-20">
                 <div
                     class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
                     <div class="w-5 h-5 flex items-center justify-center">
@@ -30,14 +29,18 @@
                 <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
             </div>
 
+
             <!-- EN PREPARACIÓN -->
-            <div class="flex items-start justify-between gap-5 mb-4">
+            <div class="flex items-start justify-between gap-5 h-20">
                 <div
-                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center relative z-10">
+                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
                     <div class="w-5 h-5 flex items-center justify-center">
-                        <div
-                            class="w-full h-full border-2 border-gray-600 border-t-transparent rounded-full animate-spin">
-                        </div>
+                        <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
+                                stroke="#170033" stroke-width="1.83333" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
                     </div>
                 </div>
 
@@ -47,9 +50,29 @@
                         para que quede listo para su recolección.</div>
                 </div>
                 <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
-
             </div>
 
+            <!-- PAQUETE LISTO -->
+            <div class="flex items-start justify-between gap-5 h-20">
+                <div
+                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
+                                stroke="#170033" stroke-width="1.83333" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-col flex-1">
+                    <div class="font-bold text-base">Paquete Listo</div>
+                    <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">El paquete está listo para ser
+                        recogido.</div>
+                </div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
+            </div>
         </div>
     </div>
 
@@ -60,58 +83,6 @@
 
         <div class="flex justify-between items-center">
             <div class="mb-3 text-base font-semibold text-black">Personal de entrega</div>
-            <button @click="changeDelivery = true"
-                class="font-bold text-base bg-[#DFD7F6] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-[#170033] px-5 py-2">
-                Cambiar repartidor
-            </button>
-        </div>
-
-        <div>
-            <ModalDefault :show="changeDelivery" @close="changeDelivery = false">
-
-                <slot>
-
-                    <div class="font-semibold text-black text-base mb-6">Selecciona un repartidor</div>
-
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                            <svg class="h-4 w-4 text-[#170033]" fill="none" stroke="currentColor" stroke-width="2"
-                                viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="11" cy="11" r="8" />
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                            </svg>
-                        </span>
-                        <input type="search" placeholder="Buscar repartidor"
-                            class="monserrat text-base w-full placeholder:font-medium placeholder-opacity-100 border-2 border-gray-100 rounded-full placeholder:text-[#170033] py-1 px-[2rem]" />
-                    </div>
-
-                    <ul class="mt-4 text-sm font-medium text-[#170033]">
-                        <li :class="selectedCategory === '1' ? 'selected flex justify-between' : 'not-selected'"
-                            @click="setActiveCategory('1')">
-                            <span>Diego Rodríguez </span><span v-if="selectedCategory === '1'">✔</span>
-                        </li>
-                        <li :class="selectedCategory === '2' ? 'selected flex justify-between' : 'not-selected'"
-                            @click="setActiveCategory('2')">
-                            <span>Lucía Fernandez</span><span v-if="selectedCategory === '2'">✔</span>
-                        </li>
-                        <li :class="selectedCategory === '3' ? 'selected flex justify-between' : 'not-selected'"
-                            @click="setActiveCategory('3')">
-                            <span>Carlos Gómez</span><span v-if="selectedCategory === '3'">✔</span>
-
-                        </li>
-                        <li :class="selectedCategory === '4' ? 'selected flex justify-between' : 'not-selected'"
-                            @click="setActiveCategory('4')">
-                            <span>Sofía Gómez</span><span v-if="selectedCategory === '4'">✔</span>
-                        </li>
-                    </ul>
-                </slot>
-
-                <button @click="changeDelivery = false"
-                    class="w-full mt-4 px-4 py-2 bg-[#875EF8] rounded-full text-white">
-                    Confirmar
-                </button>
-
-            </ModalDefault>
         </div>
 
         <div class="flex gap-2 text-sm text-[#170033] items-center my-2">
@@ -248,14 +219,15 @@
                 </slot>
 
                 <div class="flex justify-around gap-10">
-                <button @click="cancelOrder = false" class="w-full mt-4 px-4 py-2 text-sm font-semibold text-black">
-                    Cancelar
-                </button>
+                    <button @click="cancelOrder = false" class="w-full mt-4 px-4 py-2 text-sm font-semibold text-black">
+                        Cancelar
+                    </button>
 
-                <button @click="cancelOrder = false" class="w-full mt-4 px-4 font-semibold py-2 bg-[#EB5757]/12 rounded-full text-red-500 text-sm">
-                    Eliminar orden
-                </button>
-            </div>
+                    <button @click="cancelOrder = false"
+                        class="w-full mt-4 px-4 font-semibold py-2 bg-[#EB5757]/12 rounded-full text-red-500 text-sm">
+                        Eliminar orden
+                    </button>
+                </div>
 
             </ModalDefault>
         </div>
@@ -382,7 +354,6 @@ import { ref } from "vue"
 import ProductImage from "./ProductImage.vue"
 import ModalDefault from "./ModalDefault.vue"
 
-const changeDelivery = ref(false)
 const cancelOrder = ref(false)
 const isOpen1 = ref(false)
 const isOpen2 = ref(false)
