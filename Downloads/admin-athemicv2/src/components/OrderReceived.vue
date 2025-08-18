@@ -3,10 +3,6 @@
     <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
         <div class="mb-3 text-base font-semibold">Estado de pedido</div>
 
-        <div class="relative">
-
-            <div class="absolute left-6 h-30 w-[2px] bg-[#170033]/8"></div>
-
             <!-- ORDEN RECIBIDA -->
             <div class="flex items-start justify-between gap-5 h-20">
                 <div
@@ -29,34 +25,12 @@
                 </div>
                 <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
             </div>
-
-            <!-- EN PREPARACIÓN -->
-            <div class="flex items-start justify-between gap-5 h-20">
-                <div
-                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 flex items-center justify-center relative z-10">
-                    <div class="w-5 h-5 flex items-center justify-center">
-                        <div
-                            class="w-full h-full border-2 border-gray-600 border-t-transparent rounded-full animate-spin">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col flex-1">
-                    <div class="font-bold text-base">En preparación</div>
-                    <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">La tienda está alistando el pedido
-                        para que quede listo para su recolección.</div>
-                </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
-
-            </div>
-
-        </div>
     </div>
 
 
 
     <!-- PERSONAL DE ENTREGA -->
-    <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
+    <!-- <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
 
         <div class="flex justify-between items-center">
             <div class="mb-3 text-base font-semibold text-black">Personal de entrega</div>
@@ -128,7 +102,7 @@
             <p class="font-normal">Teléfono:</p>
             <p class="font-semibold">+34 655 789 123</p>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- DETALLES DE ENTREGA -->
@@ -275,8 +249,6 @@
                         <p class="font-medium text-sm">Store</p>
                         <p class="font-semibold text-xl">Sweet Roots</p>
                     </div>
-                </div>
-                <div class="border-1 rounded-full px-2 bg-green-100 text-green-600 font-medium text-sm">Paquete Recogido
                 </div>
             </div>
 

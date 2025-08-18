@@ -5,12 +5,12 @@
 
         <div class="flex justify-between">
             <div class="monserrat text-4xl mb-7 font-semibold">
-                <p>#{{ order.id }}</p>
+                <p>#ORD-{{ order.id }}</p>
             </div>
 
-
-            <!-- SI PAQUETE LISTO PARA MODAL ACTUALIZAR ESTADO -->
-            <div v-if="order?.status === 'Paquete Listo'">
+            <!-- BOTÓN ACTUALIZAR ESTADO -->
+            <div
+                v-if="order?.status === 'Paquete Listo' || order?.status === 'En Centro de Distribución' || order?.status === 'En Camino' || order?.status === 'Orden Recibida'">
 
                 <div>
                     <button @click="updateStatus = true"
@@ -141,6 +141,11 @@ import OrderPreparing from '@/components/OrderPreparing.vue'
 import BackButton from '../../components/BackButton.vue'
 import OrderReady from '../../components/OrderReady.vue'
 import ModalDefault from '../../components/ModalDefault.vue'
+import OrderDistribution from '../../components/OrderDistribution.vue'
+import OrderOnTheWay from '../../components/OrderOnTheWay.vue'
+import OrderDelivered from '../../components/OrderDelivered.vue'
+import OrderCanceled from '../../components/OrderCanceled.vue'
+import OrderReceived from '../../components/OrderReceived.vue'
 
 const orders = [
     { id: 1345, customer: 'Adidas', date: '2024-07-01', status: 'Orden Recibida', total: 120.50 },
@@ -158,10 +163,20 @@ const order = computed(() => orders.find(o => o.id === Number(route.params.id)))
 
 const statusComponent = computed(() => {
     switch (order.value?.status) {
+        case 'Orden Recibida':
+        return OrderReceived
         case 'En Preparación':
             return OrderPreparing
         case 'Paquete Listo':
             return OrderReady
+        case 'En Centro de Distribución':
+            return OrderDistribution
+        case 'En Camino':
+            return OrderOnTheWay
+        case 'Entregado':
+            return OrderDelivered
+        case 'Cancelada':
+            return OrderCanceled
         default:
             return null
     }
