@@ -6,6 +6,7 @@
 
         <!-- ORDEN CANCELADA -->
         <div class="flex items-start justify-between mt-5 gap-5 h-20">
+            <div class="flex gap-5">
             <div
                     class="bg-[#FEF2F2] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
                     <div class="w-6 h-6 flex items-center justify-center">
@@ -19,11 +20,12 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <div class="font-bold text-base flex-1">Orden recibida</div>
-                    <div class="font-medium text-sm text-[#7A6C8C]">
-                        Pago confirmado. Pendiente de confirmación y preparación por parte de la tienda.
+                    <div class="font-bold text-base flex-1">Cancelada</div>
+                    <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">
+                        La orden ha sido cancelada.
                     </div>
                 </div>
+            </div>
                 <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
             </div>
     </div>
