@@ -53,10 +53,8 @@
             class="w-full mt-4 px-2 font-medium py-3 bg-[#875EF8] rounded-full text-white text-sm">
             Guardar cambios </button>
         </div>
-
       </ModalDefault>
     </div>
-
       </div>
     </div>
 
@@ -92,7 +90,6 @@
             class="w-full mt-4 px-2 font-medium py-3 bg-[#875EF8] rounded-full text-white text-sm">
             Crear producto </button>
         </div>
-
       </ModalDefault>
     </div>
 
