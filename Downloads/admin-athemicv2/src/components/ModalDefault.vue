@@ -2,7 +2,7 @@
     <Transition name="fade">
         <div v-if="show" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
             <Transition name="scale">
-                <div v-if="show" class="bg-white ml-70 rounded-2xl shadow-xl max-w-xl w-full p-6 relative">
+                <div v-if="show" class="bg-white ml-75 rounded-2xl shadow-xl max-w-xl w-full p-6 relative">
                     <!-- Botón cerrar -->
                     <button @click="$emit('close')" class="absolute top-3 right-3 text-black w-8 h-8 rounded-full bg-[#EDEFF3] flex items-center justify-center">
                         ✖

@@ -1,14 +1,16 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import ProductTable from '@/components/ProductTable.vue'
 import ProductFilters from '@/components/ProductFilters.vue'
 import { productsService } from '@/services/productsService'
 import { useSellerStore } from '@/stores/sellerStore'
+import Swal from 'sweetalert2'
+
 
 const router = useRouter()
+const route = useRoute()
 const sellerStore = useSellerStore()
-
 const allProducts = ref([])
 const loading = ref(true)
 const currentPage = ref(1)
@@ -42,16 +44,16 @@ async function fetchProducts(page = 1) {
   const sellerId = sellerStore.seller?.id
 
   if (!token || !sellerId) return
-  
+
   try {
     const params = {
       sellerId,
       page,
       limit: 20
     }
-    
+
     const res = await productsService.getAll(params, { Authorization: `Bearer ${token}` })
-    
+
     allProducts.value = res.data.productos.map(product => ({
       id: product.id,
       name: product.nombre,
@@ -61,7 +63,7 @@ async function fetchProducts(page = 1) {
       store: 'Tienda',
       status: product.isActive ? 'Disponible' : 'No disponible'
     }))
-    
+
     currentPage.value = res.data.paginaActual
     totalPages.value = res.data.totalPaginas
     totalProducts.value = res.data.totalProductos
@@ -81,34 +83,120 @@ function goToPage(page) {
 
 onMounted(() => {
   fetchProducts()
+
+  if (route.query.success === 'created') {
+    Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">Tu producto fue creado correctamente</span>
+            <span class="text-sm font-medium">Ya está disponible en el catálogo.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#E7DFFE',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    }).then(() => {
+      router.replace({ query: { ...route.query, success: undefined } })
+    })
+  } else if (route.query.success === 'edited') {
+    Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">Tu producto fue editado correctamente</span>
+            <span class="text-sm font-medium">Los cambios ya están disponibles en el catálogo.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#E7DFFE',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    }).then(() => {
+      router.replace({ query: { ...route.query, success: undefined } })
+    })
+  } else if (route.query.success === 'delete') {
+    Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">Producto eliminado correctamente</span>
+            <span class="text-sm font-medium">Se removió el producto con éxito.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#FEE2E2',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    }).then(() => {
+      router.replace({ query: { ...route.query, success: undefined } })
+    })
+  }
 })
+
 </script>
 
 <template>
   <section class="orders-enhanced-container">
     <div class="flex items-center justify-between mb-6">
       <div class="poppins font-medium text-2xl mb-6 text-gray-950">Productos</div>
-      <button @click="goToCreate()" class="monserrat text-sm bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-white font-semibold px-5 py-2 flex items-center gap-2">
+      <button @click="goToCreate()"
+        class="monserrat text-sm bg-[#875EF8] disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-white font-semibold px-5 py-2 flex items-center gap-2">
         Nuevo Producto
       </button>
     </div>
     <div>
-    <ProductFilters
-      :stores="stores"
-      v-model:search="search"
-      v-model:store="store"
-      search-placeholder="Buscar tienda"
-    />
-  </div>
+      <ProductFilters :stores="stores" v-model:search="search" v-model:store="store"
+        search-placeholder="Buscar tienda" />
+    </div>
     <ProductTable :products="filteredProducts" @row-click="handleRowClick" />
     <div class="orders-enhanced-pagination text-sm monserrat mt-4">
-      <button class="text-[#170033]" @click="goToPage(currentPage - 1)" :disabled="currentPage <= 1">&lt; Anterior</button>
-      <button 
-        v-for="page in totalPages" 
-        :key="page"
-        @click="goToPage(page)"
-        :class="{ active: page === currentPage }"
-      >
+      <button class="text-[#170033]" @click="goToPage(currentPage - 1)" :disabled="currentPage <= 1">&lt;
+        Anterior</button>
+      <button v-for="page in totalPages" :key="page" @click="goToPage(page)" :class="{ active: page === currentPage }">
         {{ page }}
       </button>
       <button @click="goToPage(currentPage + 1)" :disabled="currentPage >= totalPages">Siguiente &gt;</button>
