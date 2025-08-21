@@ -1,7 +1,6 @@
 import axios from 'axios'
-
-const API_URL = 'https://mercapp-seller-production.up.railway.app/api'
+import config from '../config'
 
 export const searchService = {
-  search: (params?: any) => axios.get(`${API_URL}/busqueda`, { params }),
+  search: (params?: any) => axios.get(`${config.API_URL}/busqueda`, { params }),
 } 

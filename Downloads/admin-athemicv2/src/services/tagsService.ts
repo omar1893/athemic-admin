@@ -1,8 +1,7 @@
 import axios from 'axios'
-
-const API_URL = 'https://mercapp-seller-production.up.railway.app/api'
+import config from '../config'
 
 export const tagsService = {
-  create: (data: any) => axios.post(`${API_URL}/tags`, data),
-  getAll: () => axios.get(`${API_URL}/tags`),
+  create: (data: any) => axios.post(`${config.API_URL}/tags`, data),
+  getAll: () => axios.get(`${config.API_URL}/tags`),
 } 
