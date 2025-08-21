@@ -1,10 +1,9 @@
 import axios from 'axios'
-
-const API_URL = 'https://mercapp-seller-production.up.railway.app/api'
+import config from '../config'
 
 export const sellersService = {
-  create: (data: any) => axios.post(`${API_URL}/sellers`, data),
-  getMe: ({ token }: { token: string }) => axios.get(`${API_URL}/sellers/me`, { headers: { Authorization: `Bearer ${token}` } }),
-  updateMe: (data: any) => axios.put(`${API_URL}/sellers/me`, data),
-  getById: (id: string) => axios.get(`${API_URL}/sellers/${id}`),
+  create: (data: any) => axios.post(`${config.API_URL}/sellers`, data),
+  getMe: ({ token }: { token: string }) => axios.get(`${config.API_URL}/sellers/me`, { headers: { Authorization: `Bearer ${token}` } }),
+  updateMe: (data: any) => axios.put(`${config.API_URL}/sellers/me`, data),
+  getById: (id: string) => axios.get(`${config.API_URL}/sellers/${id}`),
 } 

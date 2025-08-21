@@ -43,8 +43,8 @@ async function handlePinSubmit() {
     const code = pinDigits.value.join('')
     const res = await authService.confirmLogin(email.value, code)
     console.log(res)
-    if (res && res.data.accessToken) {
-      localStorage.setItem('accessToken', res.data.accessToken)
+    if (res && res.data.data.accessToken) {
+      localStorage.setItem('accessToken', res.data.data.accessToken)
       router.push({ name: 'home' })
     } else {
       alert('Respuesta inesperada del servidor')
