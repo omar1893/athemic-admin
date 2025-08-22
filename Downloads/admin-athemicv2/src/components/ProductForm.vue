@@ -4,12 +4,12 @@
       <span class="text-black-600">Información del producto</span>
       <div class="text-[#170033]">
         <div class="flex gap-4 mb-5">
-          <div class="w-full flex flex-col">
+          <!-- <div class="w-full flex flex-col">
             <label for="product-name" class="text-sm mb-1">Tienda</label>
             <input id="product-name" v-model="form.name" type="text" required
               placeholder="Ej: Auriculares Inalámbricos Pro"
               class="rounded-[16px] border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
-          </div>
+          </div> -->
           <div class="w-full flex flex-col">
             <label for="product-name" class="text-sm mb-1">Nombre del Producto</label>
             <input id="product-name" v-model="form.name" type="text" required
@@ -45,22 +45,22 @@
         </div>
       </div>
 
-      <!-- COMENTO PORQUE NO ESTOY SEGURO SI SE RETIRÓ POR COMPLETO -->
-      <!-- <div class="border">
+
+      <div>
       <label for="product-tags" class="block text-[#170033] font-semibold text-sm mb-1">Tags</label>
 
       <Multiselect id="product-tags" v-model="form.tagIds" :options="tags" mode="tags" :close-on-select="false"
         :searchable="true" placeholder="Selecciona o escribe tags" label="label" track-by="value"
         :create-option="false" />
 
-    </div> -->
-      <!-- <div class="text-[#170033]">
+    </div>
+      <div class="text-[#170033]">
       <label for="product-menu-image" class="block text-sm font-semibold mb-1">First Image</label>
       <input id="product-menu-image" v-model="form.menuImage" type="url" required
         placeholder="https://ejemplo.com/imagen.jpg"
         class="block rounded-[16px] w-full border placeholder-gray-300 border-gray-300 px-3 py-2 text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm" />
-    </div> -->
-      <!-- <div>
+    </div>
+      <div>
       <label class="block text-sm font-semibold text-black-600 mb-1">Carousel Images</label>
       <div class="space-y-2">
         <div v-for="(image, index) in form.detailImages" :key="index" class="flex gap-2">
@@ -82,7 +82,7 @@
           Agregar imagen
         </button>
       </div>
-    </div> -->
+    </div>
     </form>
 
     <Transition enter-active-class="transition ease-out duration-300" enter-from-class="opacity-0 translate-y-2"
@@ -166,7 +166,7 @@
           </button>
 
           <button
-            @click="alertInactive(disabledProduct), disableProductConfirm = false, disabledProduct = !disabledProduct"
+            @click="buttonDisableEnable()"
             class="w-full mt-4 px-1 font-semibold py-3 bg-[#170033]/8 text-[#170033] rounded-full text-sm">{{
               !disabledProduct ? 'Desactivar Producto' : 'Activar Producto' }}</button>
         </div>
@@ -194,7 +194,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, reactive } from 'vue'
 import ImageUpload from './ImageUpload.vue'
 import DiscountFields from './DiscountFields.vue'
 import Multiselect from '@vueform/multiselect'
@@ -219,11 +219,9 @@ const props = defineProps({
   }
 })
 
-
 const emit = defineEmits(['submit'])
+
 const alertInactive = (isDisabled) => {
-
-
   if (!isDisabled) {
     Swal.fire({
       toast: false,
@@ -347,6 +345,13 @@ function removeDetailImage(index) {
 function handleSubmit() {
   emit('submit', { ...form.value })
 }
+
+function buttonDisableEnable () {
+  alertInactive(disabledProduct);
+  disableProductConfirm.value = false; 
+  disabledProduct.value = !disabledProduct.value;
+}
+
 </script>
 
 <style scoped>

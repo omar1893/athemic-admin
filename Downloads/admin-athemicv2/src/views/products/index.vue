@@ -111,9 +111,9 @@ onMounted(() => {
       customClass: {
         popup: 'my-swal-popup'
       }
-    }).then(() => {
-      router.replace({ query: { ...route.query, success: undefined } })
     })
+    router.replace({ query: { ...route.query, success: "none" } })
+
   } else if (route.query.success === 'edited') {
     Swal.fire({
       toast: false,
@@ -141,9 +141,8 @@ onMounted(() => {
       customClass: {
         popup: 'my-swal-popup'
       }
-    }).then(() => {
-      router.replace({ query: { ...route.query, success: undefined } })
     })
+    router.replace({ query: { ...route.query, success: "none" } })
   } else if (route.query.success === 'delete') {
     Swal.fire({
       toast: false,
@@ -171,9 +170,8 @@ onMounted(() => {
       customClass: {
         popup: 'my-swal-popup'
       }
-    }).then(() => {
-      router.replace({ query: { ...route.query, success: undefined } })
     })
+    router.replace({ query: { ...route.query, success: "none" } })
   }
 })
 

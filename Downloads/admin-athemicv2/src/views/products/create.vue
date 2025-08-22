@@ -5,22 +5,9 @@
       <div class="monserrat text-2xl font-semibold">{{ isEditing ? productData?.name : 'Nuevo producto' }}</div>
       <div class="monserrat">
 
-        <button v-show="isEdited" @click="() => {
-          isEdited = false;
-          editCondition = 'Editar productos';
-          beingEdited = false;
-        }" class="m-5 font-semibold text-[#170033] text-sm">cancelar</button>
+        <button v-show="isEdited" @click="buttonCancel()" class="m-5 font-semibold text-[#170033] text-sm">cancelar</button>
 
-        <button type="submit" @click="() => {
-          if (isEditing && !beingEdited) {
-            editCondition = 'Guardar cambios';
-            isEdited = true;
-            beingEdited = true;
-          } else if (isEditing && beingEdited) {
-            saveProduct = true
-          } else if (!isEditing) {
-            createProduct = true
-          }}" 
+        <button type="submit" @click="buttonCondition()" 
           class="px-4 py-3 rounded-full text-white text-sm font-semibold bg-[#875EF8] disabled:bg-[#875EF859]
           disabled:text-white disabled:cursor-not-allowed">
           {{ isEditing ? editCondition : 'Crear Producto' }}
@@ -45,11 +32,11 @@
         </slot>
 
         <div class=" monserrat flex justify-around gap-10">
-          <button @click="saveProduct = false, beingEdited = false, isEdited = false, editCondition = 'Editar producto'" class="w-full mt-4 px-4 py-2 text-sm font-semibold text-black">
+          <button @click="cancelEditProduct()" class="w-full mt-4 px-4 py-2 text-sm font-semibold text-black">
             Cancelar
           </button>
 
-          <button @click="saveProduct = false, goToProductsEdited()"
+          <button @click="goToProductsEdited()"
             class="w-full mt-4 px-2 font-medium py-3 bg-[#875EF8] rounded-full text-white text-sm">
             Guardar cambios </button>
         </div>
@@ -78,7 +65,6 @@
             <div>Verifica que toda la información esté correcta antes de confirmar. Podrás editarlo más adelante si es
               necesario.</div>
           </div>
-
         </slot>
 
         <div class=" monserrat flex justify-around gap-10">
@@ -86,7 +72,7 @@
             Cancelar
           </button>
 
-          <button @click="createProduct = false, goToProductsCreated()"
+          <button @click="goToProductsCreated()"
             class="w-full mt-4 px-2 font-medium py-3 bg-[#875EF8] rounded-full text-white text-sm">
             Crear producto </button>
         </div>
@@ -96,7 +82,7 @@
     <div v-if="loading" class="flex items-center justify-center py-8">
       <span class="text-lg text-gray-500">Cargando...</span>
     </div>
-    <ProductForm v-else :initial-data="productData" :is-editing="isEditing" :beingEdited="beingEdited" @submit="handleSubmit" />
+    <ProductForm v-else :initial-data="productData" :is-editing="isEditing" :beingEdited="beingEdited" @submit="handleSubmit" ref="productFormRef" />
   </div>
 </template>
 
@@ -119,7 +105,8 @@ const productId = route.params.id
 const isEditing = computed(() => !!productId)
 const isEdited = ref(false)
 const beingEdited = ref(false)
-let editCondition = ref("Editar producto")
+const editCondition = ref("Editar producto")
+
 
 const fetchProduct = async () => {
   if (!productId) return
@@ -180,12 +167,36 @@ const handleSubmit = async (product) => {
       })
       alert('Producto creado correctamente')
     }
-
     router.push({ name: 'products' })
   } catch (e) {
     console.error('Error saving product:', e)
     alert(isEditing.value ? 'Error al actualizar el producto' : 'Error al crear el producto')
   }
+}
+
+function cancelEditProduct () {
+  saveProduct.value = false, 
+  beingEdited.value = false, 
+  isEdited.value = false, 
+  editCondition.value = 'Editar producto'
+}
+
+
+function buttonCondition () {
+          if (isEditing && !beingEdited) {
+            editCondition.value = 'Guardar cambios';
+            isEdited.value = true;
+            beingEdited.value = true;
+          } else if (isEditing && beingEdited) {
+            saveProduct.value = true
+          } else if (!isEditing) {
+            createProduct.value = true
+          }}
+
+function buttonCancel () {
+          isEdited.value = false;
+          editCondition.value = 'Editar productos';
+          beingEdited.value = false;
 }
 
 onMounted(() => {
