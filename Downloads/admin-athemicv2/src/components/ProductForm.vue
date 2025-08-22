@@ -131,7 +131,7 @@
             Cancelar
           </button>
 
-          <button type="button" @click="goToProductsDelete()"
+          <button type="button" @click="goToStoreDelete()"
             class="w-full mt-4 px-1 font-semibold py-3 bg-[#EB5757]/12 text-red-600 rounded-full text-sm">Eliminar
             producto</button>
         </div>
@@ -302,8 +302,8 @@ const disableProductConfirm = ref(false)
 const disabledProduct = ref(false)
 const deleteProductConfirm = ref(false)
 
-function goToProductsDelete() {
-  router.push({ name: 'products', query: { success: 'delete' } })
+function goToStoreDelete() {
+  router.push({ name: 'stores', query: { success: 'delete' } })
 }
 
 onMounted(async () => {
@@ -353,28 +353,3 @@ function buttonDisableEnable () {
 }
 
 </script>
-
-<style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-
-
-div.multiselect {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
-  border-radius: 16px;
-}
-
-span.multiselect-tag {
-  background-color: black !important;
-}
-
-div.multiselect-placeholder {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 400;
-  border-radius: 16px;
-}
-</style>
-
-<style>
-@import "@vueform/multiselect/themes/default.css";
-</style>

@@ -261,9 +261,6 @@
         </div>
 
 
-
-
-
         <div class="text-[#170033] border-1 border-[#875EF8]/8 rounded-[16px] px-4 mt-2">
 
             <!-- INFORMACIÓN TIENDA -->
@@ -359,10 +356,6 @@
                 <p>TOTAL</p>
                 <p>$38.25</p>
             </div>
-
-
-
-
         </div>
 
 

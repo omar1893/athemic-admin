@@ -181,15 +181,14 @@ function cancelEditProduct () {
   editCondition.value = 'Editar producto'
 }
 
-
 function buttonCondition () {
-          if (isEditing && !beingEdited) {
+          if (isEditing.value && !beingEdited.value) {
             editCondition.value = 'Guardar cambios';
             isEdited.value = true;
             beingEdited.value = true;
-          } else if (isEditing && beingEdited) {
+          } else if (isEditing.value  && beingEdited.value ) {
             saveProduct.value = true
-          } else if (!isEditing) {
+          } else if (!isEditing.value) {
             createProduct.value = true
           }}
 

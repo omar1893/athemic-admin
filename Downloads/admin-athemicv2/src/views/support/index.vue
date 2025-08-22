@@ -118,7 +118,7 @@ const seleccionarConversacion = (convo) => {
               <div class="ml-auto font-normal text-xs flex flex-col">
                 <span>{{ convo.hora }}</span>
                 <div class="text-right mt-1">
-                  <span class="px-2 py-0.5 rounded-full bg-[#875EF8] text-white text-xs font-semibold">1</span>
+                  <span class="px-2 py-0.5 rounded-full w-6 h-6 flex items-center justify-center bg-[#875EF8] text-white text-xs font-semibold">1</span>
                 </div>
               </div>
             </div>
@@ -170,7 +170,7 @@ const seleccionarConversacion = (convo) => {
 
       <!-- Eviar mensaje -->
       <div class="flex gap-2 mx-4 mb-4 items-center justify-center" v-if="seleccionada">
-        <div class="flex rounded-full bg-[#170033]/8 px-2 h-8 items-center justify-center font-semibold"><svg width="21"
+        <div class="flex rounded-full bg-[#170033]/8 px-2 w-8 h-8 items-center justify-center font-semibold"><svg width="21"
             height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M10.4827 15.8337V10.0003M10.4827 10.0003V4.16699M10.4827 10.0003L4.64941 10.0003M10.4827 10.0003L16.3161 10.0003"

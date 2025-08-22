@@ -46,7 +46,9 @@
     </button>
   </form>
 </template>
+
 <script setup>
+
 import { ref } from 'vue'
 import ProductImageCarousel from './ProductImageCarousel.vue'
 import DiscountFields from './DiscountFields.vue'
@@ -55,5 +57,7 @@ const props = defineProps({
   stores: { type: Array, default: () => [] }
 })
 const form = ref({ ...props.product })
-const inputClass = 'block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm'
+const inputClass = 'block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-400 focus:outline-none text-sm'
+
+
 </script> 

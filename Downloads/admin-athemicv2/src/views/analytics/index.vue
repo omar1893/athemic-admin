@@ -97,29 +97,29 @@ import StoreComparison from '../../components/StoreComparison.vue'
       <span class="font-semibold mb-5">Productos Más Vendidos</span>
       <ul>
         <li class="mb-4">
-          <div class="font-semibold text-[#170033]"><span
-              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">1</span>Auriculares Inalámbricos Pro
+          <div class="font-semibold flex items-center text-[#170033]">
+            <span class="bg-[#F3EFFE] text-[#875EF8] flex items-center justify-center w-8 h-8 rounded-full px-3 py-1 mr-1">1</span>Auriculares Inalámbricos Pro
           </div>
           <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
         </li>
         <li class="mb-4">
-          <div class="font-semibold text-[#170033]"><span
-              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">2</span>Funda Iphone 14 Pro</div>
+          <div class="font-semibold flex items-center text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] flex items-center justify-center w-8 h-8 rounded-full px-3 py-1 mr-1">2</span>Funda Iphone 14 Pro</div>
           <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
         </li>
         <li class="mb-4">
-          <div class="font-semibold text-[#170033]"><span
-              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">3</span>Cable USB-C (2m)</div>
+          <div class="font-semibold flex items-center text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] flex items-center justify-center w-8 h-8 rounded-full px-3 py-1 mr-1">3</span>Cable USB-C (2m)</div>
           <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
         </li>
         <li class="mb-4">
-          <div class="font-semibold text-[#170033]"><span
-              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">4</span>Cargador Inalámbrico 15W</div>
+          <div class="font-semibold flex items-center text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] flex items-center justify-center w-8 h-8 rounded-full px-3 py-1 mr-1">4</span>Cargador Inalámbrico 15W</div>
           <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
         </li>
         <li class="mb-4">
-          <div class="font-semibold text-[#170033]"><span
-              class="bg-[#F3EFFE] text-[#875EF8] rounded-[200px] px-3 py-1 mr-1">5</span>Altavoz Bluetooth Premium</div>
+          <div class="font-semibold flex items-center text-[#170033]"><span
+              class="bg-[#F3EFFE] text-[#875EF8] flex items-center justify-center w-8 h-8 rounded-full px-3 py-1 mr-1">5</span>Altavoz Bluetooth Premium</div>
           <div class="pl-9 text-base font-light text-[#170033]">89 unidades</div>
         </li>
       </ul>
@@ -136,7 +136,7 @@ import StoreComparison from '../../components/StoreComparison.vue'
       <li>
         <div class="flex mb-5">
           <div class="mr-1">
-            <div class="rounded-[200px] p-1 bg-[#F3EFFE] p-1"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+            <div class="rounded-full w-7 h-7  flex items-center justify-center p-1 bg-[#F3EFFE] p-1"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
@@ -157,7 +157,7 @@ import StoreComparison from '../../components/StoreComparison.vue'
       <li>
         <div class="flex mb-5">
           <div class="mr-1">
-            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+            <div class="rounded-full w-7 h-7  flex items-center justify-center p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
@@ -178,7 +178,7 @@ import StoreComparison from '../../components/StoreComparison.vue'
       <li>
         <div class="flex mb-5">
           <div class="mr-1">
-            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+            <div class="rounded-full w-7 h-7  flex items-center justify-center p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
@@ -199,7 +199,7 @@ import StoreComparison from '../../components/StoreComparison.vue'
       <li>
         <div class="flex mb-5">
           <div class="mr-1">
-            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+            <div class="rounded-full w-7 h-7  flex items-center justify-center p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"
@@ -220,7 +220,7 @@ import StoreComparison from '../../components/StoreComparison.vue'
       <li>
         <div class="flex mb-5">
           <div class="mr-1">
-            <div class="rounded-[200px] p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
+            <div class="rounded-full w-7 h-7  flex items-center justify-center p-1 bg-[#F3EFFE]"><svg width="21" height="20" viewBox="0 0 21 20" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M10.3156 2.50195V17.502M14.4823 6.25195C14.1739 4.95803 13.0863 4.00195 11.792 4.00195H10.3156H8.9267C7.39258 4.00195 6.14893 5.3451 6.14893 7.00195C6.14893 8.65881 7.39258 10.002 8.9267 10.002H10.3156L11.7045 10.002C13.2386 10.002 14.4823 11.3451 14.4823 13.002C14.4823 14.6588 13.2386 16.002 11.7045 16.002H10.3156H8.83919C7.54486 16.002 6.45729 15.0459 6.14893 13.752"

@@ -43,9 +43,9 @@ const totalPages = ref(1)
                         <td class="px-6 py-4 whitespace-nowrap">{{ order.repartidores }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ order.telefono }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ order.email }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <td class="px-6 py-4 whitespace-nowrap flex justify-center text-center">
                             <span :class="[
-                            'px-2 py-1 rounded-full',
+                            'px-2 py-1 flex items-center justify-center w-8 h-8 rounded-full',
                             order.amount >0 ? 'border-1 bg-green-100 text-green-600' 
                             : 'border-1 border-[#B6B7BB] bg-[#B6B7BB1A] text-[#B6B7BB]'
                         ]">
