@@ -341,13 +341,13 @@
   
   watch(() => form.value.tagIds, (val) => { console.log('tagIds seleccionados:', val) })
   
-  function addDetailImage() {
-    form.value.detailImages.push('')
-  }
+  // function addDetailImage() {
+  //   form.value.detailImages.push('')
+  // }
   
-  function removeDetailImage(index) {
-    form.value.detailImages.splice(index, 1)
-  }
+  // function removeDetailImage(index) {
+  //   form.value.detailImages.splice(index, 1)
+  // }
   
   function handleSubmit() {
     emit('submit', { ...form.value })

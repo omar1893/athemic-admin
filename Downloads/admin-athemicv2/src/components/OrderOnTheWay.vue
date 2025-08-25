@@ -253,6 +253,13 @@
                     <div class="flex flex-col">
                         <p class="font-semibold text-base my-1">Sunset Harmony Coffee</p>
                         <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">2</span></p>
+                        <button><svg class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.5605 7L15.455 4.78885C14.9068 3.69253 13.7863 3 12.5605 3C11.3348 3 10.2143 3.69253 9.66612 4.78885L8.56055 7M4.56055 7H20.5605M6.56055 7H18.5605V15C18.5605 16.8638 18.5605 17.7957 18.2561 18.5307C17.8501 19.5108 17.0714 20.2895 16.0913 20.6955C15.3562 21 14.4243 21 12.5605 21C10.6968 21 9.7649 21 9.02981 20.6955C8.0497 20.2895 7.271 19.5108 6.86503 18.5307C6.56055 17.7957 6.56055 16.8638 6.56055 15V7Z"
+                                    stroke="#EC221F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="font-semibold">$12.99</div>
@@ -266,10 +273,18 @@
                     <div class="flex flex-col">
                         <p class="font-semibold text-base my-1">Sunset Harmony Coffee</p>
                         <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">2</span></p>
+                        <button><svg class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.5605 7L15.455 4.78885C14.9068 3.69253 13.7863 3 12.5605 3C11.3348 3 10.2143 3.69253 9.66612 4.78885L8.56055 7M4.56055 7H20.5605M6.56055 7H18.5605V15C18.5605 16.8638 18.5605 17.7957 18.2561 18.5307C17.8501 19.5108 17.0714 20.2895 16.0913 20.6955C15.3562 21 14.4243 21 12.5605 21C10.6968 21 9.7649 21 9.02981 20.6955C8.0497 20.2895 7.271 19.5108 6.86503 18.5307C6.56055 17.7957 6.56055 16.8638 6.56055 15V7Z"
+                                    stroke="#EC221F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="font-semibold">$12.99</div>
             </div>
+            
 
             <div class="flex justify-between mb-3 items-center">
                 <div class="flex gap-3 items-center ">
@@ -279,6 +294,13 @@
                     <div class="flex flex-col">
                         <p class="font-semibold text-base my-1">Sunset Harmony Coffee</p>
                         <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">2</span></p>
+                        <button><svg class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.5605 7L15.455 4.78885C14.9068 3.69253 13.7863 3 12.5605 3C11.3348 3 10.2143 3.69253 9.66612 4.78885L8.56055 7M4.56055 7H20.5605M6.56055 7H18.5605V15C18.5605 16.8638 18.5605 17.7957 18.2561 18.5307C17.8501 19.5108 17.0714 20.2895 16.0913 20.6955C15.3562 21 14.4243 21 12.5605 21C10.6968 21 9.7649 21 9.02981 20.6955C8.0497 20.2895 7.271 19.5108 6.86503 18.5307C6.56055 17.7957 6.56055 16.8638 6.56055 15V7Z"
+                                    stroke="#EC221F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="font-semibold">$12.99</div>

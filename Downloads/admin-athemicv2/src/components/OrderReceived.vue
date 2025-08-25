@@ -3,28 +3,28 @@
     <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
         <div class="mb-3 text-base font-semibold">Estado de pedido</div>
 
-            <!-- ORDEN RECIBIDA -->
-            <div class="flex items-start justify-between gap-5 h-20">
-                <div
-                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
-                    <div class="w-5 h-5 flex items-center justify-center">
-                        <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
-                                stroke="#170033" stroke-width="1.83333" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
+        <!-- ORDEN RECIBIDA -->
+        <div class="flex items-start justify-between gap-5 h-20">
+            <div
+                class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
+                <div class="w-5 h-5 flex items-center justify-center">
+                    <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
+                            stroke="#170033" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
                 </div>
-
-                <div class="flex flex-col">
-                    <div class="font-bold text-base flex-1">Orden recibida</div>
-                    <div class="font-medium text-sm text-[#7A6C8C]">
-                        Pago confirmado. Pendiente de confirmación y preparación por parte de la tienda.
-                    </div>
-                </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
             </div>
+
+            <div class="flex flex-col">
+                <div class="font-bold text-base flex-1">Orden recibida</div>
+                <div class="font-medium text-sm text-[#7A6C8C]">
+                    Pago confirmado. Pendiente de confirmación y preparación por parte de la tienda.
+                </div>
+            </div>
+            <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0,10)}}</div>
+        </div>
     </div>
 
 
@@ -121,28 +121,30 @@
         <div v-show="isOpen1" class="transition-all">
             <div class="flex gap-2 text-sm text-[#170033] items-center my-5">
                 <p class="font-normal">Detalles de dirección:</p>
-                <p class="font-semibold">Calle de la Paz, 123, 4º B, Madrid, España</p>
+                <p class="font-semibold">{{ props.suborderDetail.subOrder.shipFromAddress.calle }},
+                    {{ props.suborderDetail.subOrder.shipFromAddress.nombreEdificio }},
+                    {{ props.suborderDetail.subOrder.shipFromAddress.detalleVivienda }}</p>
             </div>
 
             <div class="flex gap-2 text-sm text-[#170033] items-center my-5">
                 <p class="font-normal">Número de casa:</p>
-                <p class="font-semibold">123</p>
+                <p class="font-semibold">{{ props.suborderDetail.subOrder.shipFromAddress.homeNumber }}</p>
             </div>
 
             <div class="flex gap-2 text-sm text-[#170033] items-center my-5">
                 <p class="font-normal">Código postal:</p>
-                <p class="font-semibold">28001</p>
+                <p class="font-semibold">{{ props.suborderDetail.subOrder.shipFromAddress.codigoPostal }}</p>
             </div>
 
             <div class="flex gap-2 text-sm text-[#170033] items-center my-5">
                 <p class="font-normal">Tipo:</p>
-                <p class="font-semibold">Casa</p>
+                <p class="font-semibold">POR DEFINIR</p>
             </div>
 
             <div class="flex gap-2 text-sm text-[#170033] items-center my-5">
                 <p class="font-normal">Referencias:</p>
-                <p class="font-semibold">Edificio blanco con puerta azul, al lado de la farmacia. Tercer piso, puerta B.
-                    Timbre: Rodríguez-García.</p>
+                <p class="font-semibold">{{ props.suborderDetail.subOrder.shipFromAddress.referencias }},
+                    {{ props.suborderDetail.subOrder.shipFromAddress.instruccionesRepartidor }}</p>
             </div>
         </div>
 
@@ -222,24 +224,21 @@
                 </slot>
 
                 <div class="flex justify-around gap-10">
-                <button @click="cancelOrder = false" class="w-full mt-4 px-4 py-2 text-sm font-semibold text-black">
-                    Cancelar
-                </button>
+                    <button @click="cancelOrder = false" class="w-full mt-4 px-4 py-2 text-sm font-semibold text-black">
+                        Cancelar
+                    </button>
 
-                <button @click="cancelOrder = false" class="w-full mt-4 px-4 font-semibold py-2 bg-[#EB5757]/12 rounded-full text-red-500 text-sm">
-                    Eliminar orden
-                </button>
-            </div>
+                    <button @click="cancelOrder = false"
+                        class="w-full mt-4 px-4 font-semibold py-2 bg-[#EB5757]/12 rounded-full text-red-500 text-sm">
+                        Eliminar orden
+                    </button>
+                </div>
 
             </ModalDefault>
         </div>
 
 
-
-
-
         <div class="text-[#170033] border-1 border-[#875EF8]/8 rounded-[16px] px-4 mt-2">
-
             <!-- INFORMACIÓN TIENDA -->
             <div class="flex justify-between items-center w-full my-3">
                 <div class="flex gap-3 items-center">
@@ -247,68 +246,53 @@
                     </div>
                     <div class="flex flex-col">
                         <p class="font-medium text-sm">Store</p>
-                        <p class="font-semibold text-xl">Sweet Roots</p>
+                        <p class="font-semibold text-xl">{{ props.suborderDetail.subOrder.sellerName }}</p>
                     </div>
                 </div>
             </div>
 
-            <!-- PRODUCTOS EN PREPARACIÓN -->
+            <!-- SUBÓRDENES E ITEMS LISTA -->
+            <ul v-for="suborder in props" :key="suborder.subOrder.subOrderid">
+                <li v-for="item in props.suborderDetail.subOrder.items" :key="item.orderItemId">
+                    <div class="flex justify-between mb-3 items-center">
+                        <div class="flex gap-3 items-center ">
+                            <div>
+                                <ProductImage />
+                            </div>
+                            <div v-for="item in props.suborderDetail.subOrder.items" class="flex flex-col">
+                                <p class="font-semibold text-base my-1">{{ item.productName }}</p>
+                                <p class="font-medium text-sm my-1">Cantidad: <span
+                                        class="font-semibold">{{ item.qty }}</span></p>
 
-            <div class="flex justify-between mb-3 items-center">
-                <div class="flex gap-3 items-center ">
-                    <div>
-                        <ProductImage />
+                                <!-- NO RECIBO UN ESTADO ESPECÍFICAMENTE DEL ITEM -->
+                                <p class="font-medium text-sm my-1">Estado: <span
+                                        class="text-[#27AE60] font-semibold">Aceptado</span></p>
+                                        <button><svg class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.5605 7L15.455 4.78885C14.9068 3.69253 13.7863 3 12.5605 3C11.3348 3 10.2143 3.69253 9.66612 4.78885L8.56055 7M4.56055 7H20.5605M6.56055 7H18.5605V15C18.5605 16.8638 18.5605 17.7957 18.2561 18.5307C17.8501 19.5108 17.0714 20.2895 16.0913 20.6955C15.3562 21 14.4243 21 12.5605 21C10.6968 21 9.7649 21 9.02981 20.6955C8.0497 20.2895 7.271 19.5108 6.86503 18.5307C6.56055 17.7957 6.56055 16.8638 6.56055 15V7Z"
+                                    stroke="#EC221F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                            </div>
+                        </div>
+                        <div v-for="item in props.suborderDetail.subOrder.items" class="font-semibold">
+                            ${{ item.unitPrice.amountMinor }}</div>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="font-semibold text-base my-1">Sunset Harmony Coffee</p>
-                        <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">2</span></p>
-                        <p class="font-medium text-sm my-1">Estado: <span
-                                class="text-[#27AE60] font-semibold">Aceptado</span></p>
-                    </div>
-                </div>
-                <div class="font-semibold">$12.99</div>
-            </div>
-
-            <div class="flex justify-between mb-3 items-center">
-                <div class="flex gap-3 items-center ">
-                    <div>
-                        <ProductImage />
-                    </div>
-                    <div class="flex flex-col">
-                        <p class="font-semibold text-base my-1">Sunset Harmony Coffee</p>
-                        <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">2</span></p>
-                        <p class="font-medium text-sm my-1">Estado: <span
-                                class="text-[#27AE60] font-semibold">Aceptado</span></p>
-                    </div>
-                </div>
-                <div class="font-semibold">$12.99</div>
-            </div>
-
-            <div class="flex justify-between mb-3 items-center">
-                <div class="flex gap-3 items-center ">
-                    <div>
-                        <ProductImage />
-                    </div>
-                    <div class="flex flex-col">
-                        <p class="font-semibold text-base my-1">Sunset Harmony Coffee</p>
-                        <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">2</span></p>
-                        <p class="font-medium text-sm my-1">Estado: <span
-                                class="text-[#27AE60] font-semibold">Aceptado</span></p>
-                    </div>
-                </div>
-                <div class="font-semibold">$12.99</div>
-            </div>
-
+                </li>
+            </ul>
 
             <div class="border-b-3 border-dashed border-[#170033]/8 my-5"></div>
 
             <!-- SUBTOTAL -->
 
             <div class="flex justify-between mb-4 items-center">
-                <div class="flex font-medium text-base">Subtotal de Sweet Roots</div>
+                <div class="flex font-medium text-base">Subtotal de {{ props.suborderDetail.subOrder.sellerName }}</div>
                 <div class="flex flex-col">
                     <p class="line-through font-normal text-sm">$12.99</p>
-                    <p class="font-semibold text-base">$25.25</p>
+                    <!-- EL OBJETO VIENE SIN SUBTOTAL - SOLO PRECIO POR UNIDAD -->
+                    <p class="font-semibold text-base">${{ props.suborderDetail.subOrder.items[0].unitPrice.amountMinor
+                        }}</p>
                 </div>
             </div>
         </div>
@@ -331,38 +315,35 @@
                 <p>TOTAL</p>
                 <p>$38.25</p>
             </div>
-
-
-
-
         </div>
-
-
-
     </div>
 </template>
 
 <script setup>
-defineProps({
-    order: {
-        type: Object,
-        required: true
-    }
-})
 
 import { ref } from "vue"
 import ProductImage from "./ProductImage.vue"
 import ModalDefault from "./ModalDefault.vue"
+import { getCurrentInstance } from 'vue'
 
 const changeDelivery = ref(false)
 const cancelOrder = ref(false)
 const isOpen1 = ref(false)
 const isOpen2 = ref(false)
 const selectedCategory = ref('')
+const props = defineProps({
+    suborderDetail: {
+        type: Object,
+        required: true
+    }
+})
+
 
 function setActiveCategory(category) {
     selectedCategory.value = category
 }
+
+console.log("esta es la prop: ", props.suborderDetail.subOrder.sellerName)
 </script>
 
 <style scoped>

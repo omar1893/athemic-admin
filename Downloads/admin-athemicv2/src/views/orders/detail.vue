@@ -5,19 +5,14 @@
 
         <div class="flex justify-between">
             <div class="monserrat text-4xl mb-7 font-semibold">
-                <p>#ORD-{{ order.id }}</p>
+                <p>Order-{{ suborderIdShort }}</p>
             </div>
 
             <!-- BOTÓN ACTUALIZAR ESTADO -->
-            <div
-                v-if="order?.status === 'Paquete Listo' || order?.status === 'En Centro de Distribución' || order?.status === 'En Camino' || order?.status === 'Orden Recibida'">
-
-                <div>
-                    <button @click="updateStatus = true"
-                        class="monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white">Actualizar
-                        Estado</button>
-                </div>
-
+            <div>
+                <button @click="updateStatus = true"
+                    class="monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white">Actualizar
+                    Estado</button>
                 <div class="monserrat">
                     <ModalDefault :show="updateStatus" @close="updateStatus = false">
                         <slot>
@@ -124,18 +119,17 @@
 
 
         <!-- SI NO CONSIGUE EL ORDER ID -->
-        <div v-if="order">
-            <component :is="statusComponent" v-if="statusComponent" :order="order" />
+        <div v-if="suborder">
+            <component :is="statusComponent" :suborderDetail="suborder" />
         </div>
-
         <div v-else>
-            <p class="text-red-500">Orden no encontrada</p>
+            <p>Cargando datos de la orden...</p>
         </div>
     </div>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import OrderPreparing from '@/components/OrderPreparing.vue'
 import BackButton from '../../components/BackButton.vue'
@@ -147,24 +141,41 @@ import OrderDelivered from '../../components/OrderDelivered.vue'
 import OrderCanceled from '../../components/OrderCanceled.vue'
 import OrderReceived from '../../components/OrderReceived.vue'
 
-const orders = [
-    { id: 1345, customer: 'Adidas', date: '2024-07-01', status: 'Orden Recibida', total: 120.50 },
-    { id: 3567, customer: 'Zara', date: '2024-07-02', status: 'En Preparación', total: 75.00 },
-    { id: 456223, customer: 'Nike', date: '2024-07-03', status: 'Paquete Listo', total: 0.00 },
-    { id: 3232, customer: 'Juan Valdez', date: '2024-07-04', status: 'En Centro de Distribución', total: 210.99 },
-    { id: 12343, customer: 'Juan Valdez', date: '2024-07-04', status: 'En Camino', total: 210.99 },
-    { id: 3434, customer: 'Juan Valdez', date: '2024-07-04', status: 'Entregado', total: 210.99 },
-    { id: 7632, customer: 'Juan Valdez', date: '2024-07-04', status: 'Cancelada', total: 210.99 },
-    { id: 2358, customer: 'Juan Valdez', date: '2024-07-04', status: 'Entregado', total: 210.99 }
-]
-
+const suborderId = ref(null)
+const suborderIdShort = ref(null)
+const suborderStatus = ref(null)
 const route = useRoute()
-const order = computed(() => orders.find(o => o.id === Number(route.params.id)))
+const selected = ref("")
+const updateStatus = ref(false)
+const token = localStorage.getItem('accessToken')
+const suborder = ref(null)
+
+onMounted(() => {
+    suborderId.value = route.params.id
+    console.log(suborderId.value)
+    suborderIdShort.value = route.params.id.slice(3, 10)
+    console.log(route.params.status)
+    suborderStatus.value = route.params.status
+
+    fetch(`https://mercapp-mono-production.up.railway.app/api/suborders/${suborderId.value}`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            suborder.value = data
+            console.log("la suborden en detalle es: ", suborder.value)
+        })
+        .catch(error => ('Error al obtener órdenes: ', error));
+})
 
 const statusComponent = computed(() => {
-    switch (order.value?.status) {
-        case 'Orden Recibida':
-        return OrderReceived
+    console.log("estatus actual: ", suborderStatus.value)
+    switch (suborderStatus.value) {
+        case undefined:
+            return OrderReceived
         case 'En Preparación':
             return OrderPreparing
         case 'Paquete Listo':
@@ -182,6 +193,4 @@ const statusComponent = computed(() => {
     }
 })
 
-const selected = ref("")
-const updateStatus = ref(false)
 </script>

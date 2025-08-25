@@ -16,7 +16,7 @@ const totalPages = ref(1)
 // function goToCreate() {
 //     router.push('./')
 // }
-// </script>
+</script>
 
 <template>
   <div class="orders-enhanced-container">
