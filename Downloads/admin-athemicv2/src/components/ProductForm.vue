@@ -1,6 +1,6 @@
 <template>
   <div class="bg-white p-8 sm:p-8 p-4 rounded-xl">
-    <form class="font-semibold flex monserrat flex-col gap-6" @submit.prevent="handleSubmit">
+    <form class="font-semibold flex monserrat flex-col gap-6">
       <span class="text-black-600">Información del producto</span>
       <div class="text-[#170033]">
         <div class="flex gap-4 mb-5">
@@ -194,14 +194,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, reactive } from 'vue'
+import { ref, onMounted, watch} from 'vue'
 import ImageUpload from './ImageUpload.vue'
 import DiscountFields from './DiscountFields.vue'
 import Multiselect from '@vueform/multiselect'
 import { tagsService } from '@/services/tagsService'
 import ModalDefault from './ModalDefault.vue'
 import Swal from 'sweetalert2'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 
 const props = defineProps({
@@ -218,9 +218,7 @@ const props = defineProps({
     default: false
   }
 })
-
 const emit = defineEmits(['submit'])
-
 const alertInactive = (isDisabled) => {
   if (!isDisabled) {
     Swal.fire({
@@ -295,6 +293,17 @@ const form = ref({
   detailImages: []
 })
 
+const checkFields = () => {
+  if (form.value.name.trim() === '' || form.value.precio === null || form.value.quantity === null || form.value.description.trim() === '') {
+    return false
+  }  else {
+    return true
+  }
+}
+
+
+defineExpose({form, checkFields})
+
 const router = useRouter()
 const showDiscount = ref(false)
 const tags = ref([])
@@ -342,9 +351,9 @@ function removeDetailImage(index) {
   form.value.detailImages.splice(index, 1)
 }
 
-function handleSubmit() {
-  emit('submit', { ...form.value })
-}
+// function handleSubmit() {
+//   emit('submit', { ...form.value })
+// }
 
 function buttonDisableEnable () {
   alertInactive(disabledProduct);

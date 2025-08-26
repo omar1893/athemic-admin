@@ -21,6 +21,7 @@
       </tbody>
     </table>
   </div>
+
 </template>
 
 <script setup>
@@ -28,4 +29,5 @@ import ProductRow from './ProductRow.vue'
 const props = defineProps({
   products: { type: Array, required: true }
 })
+
 </script> 

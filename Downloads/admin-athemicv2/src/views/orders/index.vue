@@ -1,9 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+import Swal from 'sweetalert2';
+import { onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
-
+const router = useRouter()
+const route = useRoute()
 const token = localStorage.getItem('accessToken');
-console.log(token)
 const suborders = ref([])
 
 fetch('https://mercapp-mono-production.up.railway.app/api/suborders', {
@@ -15,11 +17,70 @@ fetch('https://mercapp-mono-production.up.railway.app/api/suborders', {
   .then(response => response.json())
   .then(data => {
     suborders.value = data.suborders
-    console.log("el estado es: ", suborders.value)
   })
   .catch(error => ('Error al obtener órdenes: ', error));
 
+onMounted (() => {
 
+  if (route.query.success === 'newStatus') {
+    Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">La orden fue actualizada correctamente.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#E7DFFE',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    })
+    router.replace({ query: { ...route.query, success: "none" } })
+
+  } else if (route.query.success === 'canceled') {
+    Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">La orden ha sido cancelada correctamente.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#FEE2E2',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    })
+    router.replace({ query: { ...route.query, success: "none" } })
+  }
+})
 
 </script>
 

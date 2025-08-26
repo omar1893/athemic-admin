@@ -397,6 +397,7 @@ function cancelOrderPost (suborderId) {
             return response.json();
         }).then(data => {
             console.log('Estado actualizado a:', newStatus.value);
+            goToOrdersCanceled();
         })
         .catch(error => {
             console.error('Error:', error);
@@ -432,11 +433,13 @@ function deleteItem(itemOrderId, orderId, subOrderId) {
 
 }
 
+function goToOrdersCanceled () {
+  router.push({ name: 'orders', query: { success: 'canceled' } })
+}
+
 function setActiveCategory(category) {
     selectedCategory.value = category
 }
-
-console.log("esta es la prop: ", props.suborderDetail.subOrder.subtotal)
 
 </script>
 

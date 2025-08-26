@@ -10,7 +10,7 @@
 
             <!-- BOTÓN ACTUALIZAR ESTADO -->
             <div>
-                <button :v-show="suborderStatus !== ' COMPLETED'  && suborderStatus !== 'CANCELLED' " @click="updateStatus = true"
+                <button v-show="suborderStatus !== 'COMPLETED'  && suborderStatus !== 'CANCELLED' " @click="updateStatus = true"
                     class="monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white">Actualizar
                     Estado</button>
                 <div class="monserrat">
@@ -22,7 +22,7 @@
                             </div>
 
                             <label class="flex font-medium items-center text-[#170033] text-sm justify-between h-20">
-                                <div class="flex gap-5">
+                                <div class="flex gap-6">
                                     <div
                                         class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
                                         <div v-html="iconMap[suborderStatus] || iconMap.default"
@@ -55,7 +55,7 @@
 
                         </slot>
 
-                        <button @click="updateStatus = false, updateStatusPost()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out  
+                        <button @click="goToOrdersNewStatus (), updateStatusPost()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out  
                             disabled:cursor-not-allowed disabled:bg-[#875EF8]/50 ">
                             Confirmar </button>
                     </ModalDefault>
@@ -75,8 +75,8 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import OrderPreparing from '@/components/OrderPreparing.vue'
 import BackButton from '../../components/BackButton.vue'
 import OrderReady from '../../components/OrderReady.vue'
@@ -87,6 +87,7 @@ import OrderCanceled from '../../components/OrderCanceled.vue'
 import OrderReceived from '../../components/OrderReceived.vue'
 import OrderAccepted from '../../components/OrderAccepted.vue'
 
+const router = useRouter()
 const suborderId = ref(null)
 const suborderIdShort = ref(null)
 const suborderStatus = ref("")
@@ -97,13 +98,20 @@ const token = localStorage.getItem('accessToken')
 const suborder = ref(null)
 const newStatus = ref("")
 
+watch(
+  () => route.params.status,
+  (nuevoStatus) => {
+    suborderStatus.value = nuevoStatus || '' },
+  { immediate: true }
+)
+
+console.log("este es el estatus para el botón: ", suborderStatus.value)
+
+function goToOrdersNewStatus () {
+  router.push({ name: 'orders', query: { success: 'newStatus' } })
+}
 
 function updateStatusPost() {
-    console.log(suborderStatus.value)
-    console.log(newStatus.value)
-
-
-
     switch (suborderStatus.value) {
         case 'RECEIVED':
             newStatus.value = 'accept'
@@ -145,6 +153,7 @@ console.log(newStatusPost)
             return response.json();
         }).then(data => {
             console.log('Estado actualizado a:', newStatus.value);
+            goToOrdersNewStatus();
         })
         .catch(error => {
             console.error('Error:', error);

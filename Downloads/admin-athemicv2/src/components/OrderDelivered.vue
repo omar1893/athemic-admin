@@ -4,7 +4,7 @@
     <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
         <div class="mb-3 text-base font-semibold">Estado de pedido</div>
         <div class="relative">
-            <div class="absolute left-6 h-105 w-[2px] bg-[#170033]/8"></div>
+            <div class="absolute left-6 h-90 w-[2px] bg-[#170033]/8"></div>
 
             <!-- ORDEN RECIBIDA -->
             <div class="flex items-start justify-between gap-5 h-20">
@@ -26,7 +26,8 @@
                         Pago confirmado. Pendiente de confirmación y preparación por parte de la tienda.
                     </div>
                 </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
             </div>
 
 
@@ -49,7 +50,8 @@
                     <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">La tienda está alistando el pedido
                         para que quede listo para su recolección.</div>
                 </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
             </div>
 
             <!-- PAQUETE LISTO -->
@@ -67,15 +69,16 @@
                 </div>
 
                 <div class="flex flex-col flex-1">
-                    <div class="font-bold text-base">Paquete Listo</div>
+                    <div class="font-bold text-base">Paquete listo</div>
                     <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">El paquete está listo para ser
                         recogido.</div>
                 </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
             </div>
 
             <!-- EN CENTRO DE DISTRIBUCIÓN -->
-            <div class="flex items-start justify-between gap-5 h-20">
+            <!-- <div class="flex items-start justify-between gap-5 h-20">
                 <div
                     class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
                     <div class="w-5 h-5 flex items-center justify-center">
@@ -93,8 +96,9 @@
                     <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">El pedido llegó a la central
                         logística y está siendo preparado para su ruta de entrega.</div>
                 </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
-            </div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
+            </div> -->
 
             <!-- EN CAMINO -->
             <div class="flex items-start justify-between gap-5 h-20">
@@ -115,7 +119,8 @@
                     <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">Pedido en tránsito hacia la
                         dirección de entrega.</div>
                 </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
             </div>
 
             <!-- ENTREGADO -->
@@ -137,7 +142,8 @@
                     <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">El repartidor confirmó la recepción
                         del pedido.</div>
                 </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">Mayo 24, 2025</div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
             </div>
 
         </div>

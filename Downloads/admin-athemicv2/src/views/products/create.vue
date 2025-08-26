@@ -72,8 +72,8 @@
             Cancelar
           </button>
 
-          <button @click="goToProductsCreated()"
-            class="w-full mt-4 px-2 font-medium py-3 bg-[#875EF8] rounded-full text-white text-sm">
+          <button @click="goToProductsCreated(), probarSubmit(), handleSubmit(formNewProduct)" :disabled="!validForm"
+            class="w-full mt-4 px-2 font-medium py-3 bg-[#875EF8] rounded-full text-white text-sm disabled:cursor-not-allowed transition-colors duration-300 ease-in-out disabled:bg-[#875EF8]/50">
             Crear producto </button>
         </div>
       </ModalDefault>
@@ -82,12 +82,12 @@
     <div v-if="loading" class="flex items-center justify-center py-8">
       <span class="text-lg text-gray-500">Cargando...</span>
     </div>
-    <ProductForm v-else :initial-data="productData" :is-editing="isEditing" :beingEdited="beingEdited" @submit="handleSubmit" ref="productFormRef" />
+    <ProductForm v-else :initial-data="productData" :is-editing="isEditing" :beingEdited="beingEdited" ref="productFormRef" />
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import BackButton from '@/components/BackButton.vue'
 import ProductForm from '@/components/ProductForm.vue'
@@ -106,7 +106,31 @@ const isEditing = computed(() => !!productId)
 const isEdited = ref(false)
 const beingEdited = ref(false)
 const editCondition = ref("Editar producto")
+const productFormRef = ref(null)
+const validForm = ref(false)
+const formNewProduct = ref({})
 
+
+function probarSubmit () {
+  console.log(formNewProduct.value)
+  console.log(validForm.value)
+}
+
+watch(
+  () => (productFormRef.value ? productFormRef.value.checkFields() : false),
+  (nuevoValor) => {
+    validForm.value = nuevoValor
+  },
+  { immediate: true }
+)
+
+watch (
+  () => (productFormRef.value ? productFormRef.value.form : null),
+  (nuevoValor) => {
+    formNewProduct.value = nuevoValor
+  },
+  { immediate: true }
+)
 
 const fetchProduct = async () => {
   if (!productId) return
@@ -147,12 +171,13 @@ const handleSubmit = async (product) => {
     const payload = {
       nombre: product.name,
       precio: product.price,
-      sellerId,
       tagIds: product.tagIds || [],
       descripcion: product.description,
       menuImage: product.menuImage || '',
       detailImages: product.detailImages || []
     }
+    
+    console.log("Este es el payload: ", payload)
 
     if (isEditing.value) {
       // Update existing product
