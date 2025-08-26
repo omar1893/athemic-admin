@@ -389,7 +389,7 @@
                         <!-- NO RECIBO UN ESTADO ESPECÍFICAMENTE DEL ITEM -->
                         <p class="font-medium text-sm my-1">Estado: <span
                                 class="text-[#27AE60] font-semibold">Aceptado</span></p>
-                        <button @click="deleteItem(item.orderItemId, props.suborderDetail.orderId, props.suborderDetail.subOrder.subOrderId)"><svg
+                        <!-- <button @click="deleteItem(item.orderItemId, props.suborderDetail.orderId, props.suborderDetail.subOrder.subOrderId)"><svg
                                 class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -397,7 +397,7 @@
                                     stroke="#EC221F" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" />
                             </svg>
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="font-semibold">
