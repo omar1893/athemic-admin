@@ -15,8 +15,12 @@ fetch('https://mercapp-mono-production.up.railway.app/api/suborders', {
   .then(response => response.json())
   .then(data => {
     suborders.value = data.suborders
-    })
+    console.log("el estado es: ", suborders.value)
+  })
   .catch(error => ('Error al obtener órdenes: ', error));
+
+
+
 </script>
 
 <template>
@@ -66,26 +70,36 @@ fetch('https://mercapp-mono-production.up.railway.app/api/suborders', {
           </tr>
         </thead>
         <tbody class="monserrat text-[#170033] text-sm font-medium bg-white divide-y divide-gray-100">
-          <tr v-for="suborder in suborders" :key="suborder">
-            <router-link :to="{ name: 'OrdenDetalle', params: { id: suborder.subOrderId, status: suborder.status} }" class="no-underline hover:underline"><td class="px-6 py-4 whitespace-nowrap"> {{ suborder.subOrderId.slice(3, 10) }}</td></router-link> 
+          <tr v-for="suborder in suborders" :key="suborder.subOrderId">
+            <router-link :to="{ name: 'OrdenDetalle', params: { id: suborder.subOrderId, status: suborder.status } }"
+              class="no-underline hover:underline">
+              <td class="px-6 py-4 whitespace-nowrap"> {{ suborder.subOrderId.slice(3, 10) }}</td>
+            </router-link>
             <td class="px-6 py-4 whitespace-nowrap">
               <span :class="[
                 'px-2 rounded-full',
                 suborder.status === 'COMPLETED' ? 'border-1 bg-green-100 text-green-600' :
-                suborder.status === 'RECEIVED' ? 'border-1 bg-[#17003314] text-[#17003380]' :
-                suborder.status === 'PREPARING' ? 'border-1 bg-[#2464E5]/10 text-[#2464E5]' :
-                suborder.status === 'READY_FOR_PICKUP' ? 'border-1 bg-[#117593]/10 text-[#117593]' :
-                suborder.status === 'En Centro de Distribución' ? 'border-1 bg-[#6E2FE3]/10 text-[#6E2FE3]' :
-                suborder.status === 'DISPATCHED' ? 'border-1 bg-[#BBA333]/10 text-[#BBA333]' :
-                suborder.status === 'CANCELED' ? 'border-1 bg-red-100 text-red-400' :
+                  suborder.status === 'RECEIVED' ? 'border-1 bg-[#17003314] text-[#17003380]' :
+                    suborder.status === 'PREPARING' ? 'border-1 bg-[#2464E5]/10 text-[#2464E5]' :
+                      suborder.status === 'READY_FOR_PICKUP' ? 'border-1 bg-[#117593]/10 text-[#117593]' :
+                        suborder.status === 'ACCEPTED' ? 'border-1 bg-[#6E2FE3]/10 text-[#6E2FE3]' :
+                          suborder.status === 'DISPATCHED' ? 'border-1 bg-[#BBA333]/10 text-[#BBA333]' :
+                            suborder.status === 'CANCELED' ? 'border-1 bg-red-100 text-red-400' :
                               ''
               ]">
-                {{ suborder.status }}
+                {{ suborder.status === 'ACCEPTED' ? 'Orden aceptada' :
+                  suborder.status === 'COMPLETED' ? 'Entregado' :
+                    suborder.status === 'RECEIVED' ? 'Orden recibida' :
+                      suborder.status === 'PREPARING' ? 'En preparación' :
+                        suborder.status === 'READY_FOR_PICKUP' ? 'Paquete listo' :
+                          suborder.status === 'DISPATCHED' ? 'En camino' :
+                            suborder.status === 'CANCELED' ? 'Cancelada' :
+                              "" }}
               </span>
             </td>
             <td class="px-6 py-4 whitespace-nowrap">{{ suborder.shipFromAddress.fechaCreacion.slice(0, 10) }}</td>
             <td class="px-6 py-4 whitespace-nowrap">{{ suborder.sellerName }}</td>
-            <td v-for="item in suborder.items" :key="item.orderItemId" class="monserrat font-medium text-sm px-6 py-4 whitespace-nowrap">${{item.precio}}</td>
+            <td class="monserrat font-medium text-sm px-6 py-4 whitespace-nowrap">${{ suborder.subtotal }}</td>
           </tr>
         </tbody>
       </table>
