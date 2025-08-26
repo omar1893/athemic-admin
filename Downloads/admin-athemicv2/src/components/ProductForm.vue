@@ -48,10 +48,51 @@
 
       <div>
       <label for="product-tags" class="block text-[#170033] font-semibold text-sm mb-1">Tags</label>
-
-      <Multiselect id="product-tags" v-model="form.tagIds" :options="tags" mode="tags" :close-on-select="false"
-        :searchable="true" placeholder="Selecciona o escribe tags" label="label" track-by="value"
-        :create-option="false" />
+  
+      <Multiselect
+    v-model="form.tagIds"
+    :options="tags"
+    mode="tags"
+    placeholder="Selecciona o escribe tags"
+    label="label"
+    track-by="value"
+    :multiple="true"
+    :create-option="false"
+    :close-on-select="true"
+    :hide-selected="true"
+    :show-labels="false"
+    :classes="{
+      container: 'w-full border border-gray-300 rounded-xl p-2 bg-white relative',
+      containerOpen: 'ring-2',
+      dropdown: 'absolute z-10 mt-1 w-full max-h-60 overflow-auto bg-white rounded-md shadow-lg',
+      dropdownHidden: 'hidden',
+      option: 'px-3 py-2 cursor-pointer hover:bg-[#875EF814] transition-colors',
+      placeholder: 'text-base text-gray-300',
+      tag: 'text-black rounded-full bg-[#875EF814] px-2 py-0.5 mr-1 mb-1 inline-flex items-center',
+      tagRemove: 'ml-1 cursor-pointer hover:text-blue-300',
+      tags: 'flex flex-wrap gap-1',
+      tagsSearchWrapper: 'hidden',
+      tagsSearchCopy: 'hidden',
+      singleLabel: 'hidden',
+      singleLabelText: 'hidden',
+      multipleLabel: 'hidden'
+    }"
+  >
+    <template #tag="{ option, handleTagRemove, disabled }">
+      <span class="tag gap-1 text-black rounded-full bg-[#875EF814] px-2 py-0.5 mr-1 mb-1 inline-flex items-center">
+        {{ option.label }}
+        <button
+          type="button"
+          class="tagRemove"
+          @click="handleTagRemove(option, $event)"
+          :disabled="disabled"
+          aria-label="Remove tag"
+        >
+          &times;
+        </button>
+      </span>
+    </template>
+  </Multiselect>
 
     </div>
       <div class="text-[#170033]">
