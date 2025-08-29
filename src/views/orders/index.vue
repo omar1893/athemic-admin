@@ -85,6 +85,7 @@ onMounted (() => {
 </script>
 
 <template>
+
   <div class="orders-enhanced-container">
     <div class="poppins font-medium text-2xl mb-6 text-gray-950">Órdenes</div>
 

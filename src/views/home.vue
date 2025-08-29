@@ -93,6 +93,13 @@
     </div>
 </template>
 
+
+<script setup>
+const token = localStorage.getItem('accessToken')
+console.log(token)
+
+
+</script>
 <style lang="css" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');

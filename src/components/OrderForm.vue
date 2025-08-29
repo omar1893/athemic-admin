@@ -1,64 +1,13 @@
 <template>
     <!-- ESTADO DE PEDIDO -->
+
     <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
         <div class="mb-3 text-base font-semibold">Estado de pedido</div>
 
         <!-- ORDEN RECIBIDA -->
-        <div class="relative">
-
-            <div class="absolute left-6 h-30 w-[2px] bg-[#170033]/8"></div>
-
-            <div class="flex items-start justify-between gap-5 h-20">
-                <div
-                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
-                    <div class="w-5 h-5 flex items-center justify-center">
-                        <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
-                                stroke="#170033" stroke-width="1.83333" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="flex flex-col">
-                    <div class="font-bold text-base flex-1">Orden recibida</div>
-                    <div class="font-medium text-sm text-[#7A6C8C]">
-                        Pago confirmado. Pendiente de confirmación y preparación por parte de la tienda.
-                    </div>
-                </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
-                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
-            </div>
-
-            <!-- ORDEN ACEPTADA -->
-            <div class="flex items-start justify-between gap-5 h-20">
-
-                <div
-                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
-                    <div class="w-5 h-5 flex items-center justify-center">
-                        <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
-                                stroke="#170033" stroke-width="1.83333" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="flex flex-col">
-                    <div class="font-bold text-base flex-1">Orden aceptada</div>
-                    <div class="font-medium text-sm text-[#7A6C8C]">
-                        Pago confirmado. Pendiente de confirmación y preparación por parte de la tienda.
-                    </div>
-                </div>
-                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
-                    props.suborderDetail.subOrder.shipFromAddress.fechaCreacion.slice(0, 10) }}</div>
-            </div>
-        </div>
+        <OrderStatusIcon v-if="subOrderStatus" :suborderStatus="subOrderStatus" :suborderDate="subOrderDate"> </OrderStatusIcon>
+        <div v-else>Cargando estado de la orden...</div>
     </div>
-
-
 
     <!-- PERSONAL DE ENTREGA -->
     <!-- <div class="bg-white rounded-[1.25rem] px-8 py-5 my-6 max-w-[820px] monserrat">
@@ -222,7 +171,7 @@
 
         <div class="flex items-center justify-between">
             <div class="mb-3 text-base font-semibold text-black">Resumen de Orden y Productos</div>
-            <button @click="cancelOrder = true"
+            <button @click="cancelOrder = true" v-show="subOrderStatus !== 'CANCELED' && subOrderStatus !== 'COMPLETED'"
                 class="font-bold bg-white border border-[#170033]/8 text-base disabled:bg-[#875EF859] disabled:text-white disabled:cursor-not-allowed rounded-full text-red-500 px-5 py-3">
                 Cancelar Orden
             </button>
@@ -294,19 +243,19 @@
                             <div class="flex flex-col">
                                 <p class="font-semibold text-base my-1">{{ item.productName }}</p>
                                 <p class="font-medium text-sm my-1">Cantidad: <span class="font-semibold">{{ item.qty
-                                }}</span></p>
+                                        }}</span></p>
                                 <!-- NO RECIBO UN ESTADO ESPECÍFICAMENTE DEL ITEM -->
                                 <p class="font-medium text-sm my-1">Estado: <span
                                         class="text-[#27AE60] font-semibold">Aceptado</span></p>
                                 <!-- <button @click="deleteItem(item.orderItemId, props.suborderDetail.orderId, props.suborderDetail.subOrder.subOrderId)"><svg
-                                        class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M16.5605 7L15.455 4.78885C14.9068 3.69253 13.7863 3 12.5605 3C11.3348 3 10.2143 3.69253 9.66612 4.78885L8.56055 7M4.56055 7H20.5605M6.56055 7H18.5605V15C18.5605 16.8638 18.5605 17.7957 18.2561 18.5307C17.8501 19.5108 17.0714 20.2895 16.0913 20.6955C15.3562 21 14.4243 21 12.5605 21C10.6968 21 9.7649 21 9.02981 20.6955C8.0497 20.2895 7.271 19.5108 6.86503 18.5307C6.56055 17.7957 6.56055 16.8638 6.56055 15V7Z"
-                                            stroke="#EC221F" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                </button> -->
+                                class="cursor-pointer" width="20" height="20" viewBox="0 0 25 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.5605 7L15.455 4.78885C14.9068 3.69253 13.7863 3 12.5605 3C11.3348 3 10.2143 3.69253 9.66612 4.78885L8.56055 7M4.56055 7H20.5605M6.56055 7H18.5605V15C18.5605 16.8638 18.5605 17.7957 18.2561 18.5307C17.8501 19.5108 17.0714 20.2895 16.0913 20.6955C15.3562 21 14.4243 21 12.5605 21C10.6968 21 9.7649 21 9.02981 20.6955C8.0497 20.2895 7.271 19.5108 6.86503 18.5307C6.56055 17.7957 6.56055 16.8638 6.56055 15V7Z"
+                                    stroke="#EC221F" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button> -->
                             </div>
                         </div>
                         <div class="font-semibold">
@@ -336,7 +285,7 @@
 
             <div class="flex justify-between my-4 font-medium text-sm">
                 <p>Subtotal</p>
-                <p>$0</p>
+                <p>${{ props.suborderDetail.subOrder.subtotal }}</p>
             </div>
 
             <div class="flex justify-between my-4 font-medium text-sm">
@@ -352,11 +301,13 @@
     </div>
 </template>
 
+
 <script setup>
 
 import { ref } from "vue"
 import ProductImage from "./ProductImage.vue"
 import ModalDefault from "./ModalDefault.vue"
+import OrderStatusIcon from "./OrderStatusIcon.vue"
 
 const token = localStorage.getItem('accessToken')
 const changeDelivery = ref(false)
@@ -367,21 +318,20 @@ const selectedCategory = ref('')
 const props = defineProps({
     suborderDetail: {
         type: Object,
-        required: true
+        required: false
     }
 })
+const subOrderStatus = props.suborderDetail.subOrder.status
+const subOrderDate = props.suborderDetail.subOrder.shipFromAddress.fechaCreacion
 
 
-function cancelOrderPost (suborderId) {
+function cancelOrderPost(suborderId) {
 
-    const cancelOrderBody = 
-{
-    "action": "cancel"
-}
+    const cancelOrderBody =
+    {
+        "action": "cancel"
+    }
 
-
-    console.log(suborderId)
-    
     fetch(`https://mercapp-mono-production.up.railway.app/api/suborders/${suborderId}/status`, {
         method: 'POST',
         headers: {
@@ -396,8 +346,7 @@ function cancelOrderPost (suborderId) {
             }
             return response.json();
         }).then(data => {
-            console.log('Estado actualizado a:', newStatus.value);
-            goToOrdersCanceled();
+            console.log('Estado actualizado a: CANCELED');
         })
         .catch(error => {
             console.error('Error:', error);
@@ -407,9 +356,9 @@ function cancelOrderPost (suborderId) {
 function deleteItem(itemOrderId, orderId, subOrderId) {
 
     const cancelItemBody = {
-    "subOrderId": subOrderId,
-    "reason": "prueba"
-}
+        "subOrderId": subOrderId,
+        "reason": "prueba"
+    }
 
     fetch(`https://mercapp-mono-production.up.railway.app/api/orders/${orderId}/items/${itemOrderId}/cancel`, {
         method: 'POST',
@@ -431,10 +380,6 @@ function deleteItem(itemOrderId, orderId, subOrderId) {
             console.error('Error:', error);
         })
 
-}
-
-function goToOrdersCanceled () {
-  router.push({ name: 'orders', query: { success: 'canceled' } })
 }
 
 function setActiveCategory(category) {

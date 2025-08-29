@@ -11,17 +11,8 @@ const routes = [
     component: () => import('./views/DashboardLayout.vue'),
     children: [
       { path: 'home', name: 'home', component: () => import('./views/home.vue') },
-      {
-        path: 'orders',
-        name: 'orders',
-        component: Orders
-      },
-      {
-        path: 'orders/:id/:status',
-        name: 'OrdenDetalle',
-        component: OrdenDetalle,
-        props: true
-      },
+      { path: 'orders', name: 'orders', component: Orders},
+      { path: 'orders/:id/:status', name: 'OrdenDetalle', component: OrdenDetalle, props: true},
       { path: 'products', name: 'products', component: () => import('./views/products/index.vue') },
       { path: 'products/create', name: 'productCreate', component: () => import('./views/products/create.vue') },
       { path: 'products/:id/edit', name: 'productEdit', component: () => import('./views/products/create.vue'), props: true },

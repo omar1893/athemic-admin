@@ -10,7 +10,7 @@
 
             <!-- BOTÓN ACTUALIZAR ESTADO -->
             <div>
-                <button v-show="suborderStatus !== 'COMPLETED'  && suborderStatus !== 'CANCELLED' " @click="updateStatus = true"
+                <button v-show="suborderStatus !== 'COMPLETED'  && suborderStatus !== 'CANCELED' " @click="updateStatus = true"
                     class="monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white">Actualizar
                     Estado</button>
                 <div class="monserrat">
@@ -55,7 +55,7 @@
 
                         </slot>
 
-                        <button @click="goToOrdersNewStatus (), updateStatusPost()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out  
+                        <button @click="updateStatusPost()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out  
                             disabled:cursor-not-allowed disabled:bg-[#875EF8]/50 ">
                             Confirmar </button>
                     </ModalDefault>
@@ -65,27 +65,29 @@
 
 
         <!-- SI NO CONSIGUE EL ORDER ID -->
-        <div v-if="suborder">
+        <!-- <div v-if="suborder">
             <component ref="statusComponentRef" :is="statusComponent" :suborderDetail="suborder" />
         </div>
         <div v-else>
             <p>Cargando datos de la orden...</p>
-        </div>
+        </div> -->
+
+
+        <OrderForm v-if="suborder" :suborderDetail="suborder" :key="componentKey"></OrderForm>
+        <div v-else>
+    <p>Cargado datos de la orden...</p>
+</div>
     </div>
+
 </template>
 
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import OrderPreparing from '@/components/OrderPreparing.vue'
 import BackButton from '../../components/BackButton.vue'
-import OrderReady from '../../components/OrderReady.vue'
 import ModalDefault from '../../components/ModalDefault.vue'
-import OrderOnTheWay from '../../components/OrderOnTheWay.vue'
-import OrderDelivered from '../../components/OrderDelivered.vue'
-import OrderCanceled from '../../components/OrderCanceled.vue'
-import OrderReceived from '../../components/OrderReceived.vue'
-import OrderAccepted from '../../components/OrderAccepted.vue'
+import OrderForm from '../../components/OrderForm.vue'
+import Swal from 'sweetalert2'
 
 const router = useRouter()
 const suborderId = ref(null)
@@ -93,10 +95,11 @@ const suborderIdShort = ref(null)
 const suborderStatus = ref("")
 const route = useRoute()
 const selected = ref("")
-const updateStatus = ref(false)
+let updateStatus = ref(false)
 const token = localStorage.getItem('accessToken')
 const suborder = ref(null)
 const newStatus = ref("")
+const componentKey = ref(0)
 
 watch(
   () => route.params.status,
@@ -105,13 +108,9 @@ watch(
   { immediate: true }
 )
 
-console.log("este es el estatus para el botón: ", suborderStatus.value)
-
-function goToOrdersNewStatus () {
-  router.push({ name: 'orders', query: { success: 'newStatus' } })
-}
-
 function updateStatusPost() {
+    updateStatus = false
+
     switch (suborderStatus.value) {
         case 'RECEIVED':
             newStatus.value = 'accept'
@@ -135,9 +134,6 @@ function updateStatusPost() {
     "action": newStatus.value
 }
 
-console.log("Antes del fetch: ", newStatus.value)
-console.log(newStatusPost)
-
     fetch(`https://mercapp-mono-production.up.railway.app/api/suborders/${suborderId.value}/status`, {
         method: 'POST',
         headers: {
@@ -153,11 +149,72 @@ console.log(newStatusPost)
             return response.json();
         }).then(data => {
             console.log('Estado actualizado a:', newStatus.value);
-            goToOrdersNewStatus();
+            fireSwalStatus();
         })
         .catch(error => {
             console.error('Error:', error);
         })
+}
+
+function fireSwalStatus () {
+    componentKey.value++
+
+    Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">La orden fue actualizada correctamente.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#E7DFFE',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    })
+}
+
+function fireSwalCanceled () {
+    componentKey.value++
+Swal.fire({
+      toast: false,
+      position: 'top-end',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      backdrop: false,
+      html: `
+        <div class="monserrat flex items-center gap-3">
+          <div class="flex items-center justify-center bg-[#170033] w-7 h-7 border rounded-full">
+            <svg width="28" height="28" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z" stroke="#E7DFFE" stroke-width="1.83333" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="flex flex-col text-start">
+            <span class="text-sm font-semibold">La orden ha sido cancelada correctamente.</span>
+          </div>
+        </div>
+      `,
+      showConfirmButton: false,
+      timer: 2800,
+      background: '#FEE2E2',
+      color: '#170033',
+      customClass: {
+        popup: 'my-swal-popup'
+      }
+    })
 }
 
 const iconMap = {
@@ -192,33 +249,9 @@ onMounted(() => {
         .then(response => response.json())
         .then(data => {
             suborder.value = data
-            console.log("la suborden en detalle es: ", suborder.value)
+            console.log("esta es la suborder: ",suborder.value)
         })
         .catch(error => ('Error al obtener órdenes: ', error));
-})
-
-const statusComponent = computed(() => {
-    console.log("estatus actual: ", suborderStatus.value)
-    switch (suborderStatus.value) {
-        case 'RECEIVED':
-            return OrderReceived
-        case 'ACCEPTED':
-            return OrderAccepted
-        case 'PREPARING':
-            return OrderPreparing
-        case 'READY_FOR_PICKUP':
-            return OrderReady
-        // case 'En Centro de Distribución':
-        //     return OrderDistribution
-        case 'DISPATCHED':
-            return OrderOnTheWay
-        case 'COMPLETED':
-            return OrderDelivered
-        case 'CANCELED':
-            return OrderCanceled
-        default:
-            return null
-    }
 })
 
 </script>

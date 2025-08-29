@@ -1,0 +1,36 @@
+<template>
+<div class="relative h-15">
+<div class="flex items-center justify-between gap-5">    <div
+                    class="bg-[#E7DFFE] w-12 h-12 rounded-full flex-shrink-0 self-start flex items-center justify-center relative z-10">
+                    <div class="w-5 h-5 flex items-center justify-center">
+                        <svg class="w-full h-full" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M6.0944 10.4697L8.24049 12.6135C9.27269 10.8086 10.7012 9.26158 12.4182 8.08908L12.5111 8.02568M17.5527 10C17.5527 14.5563 13.8591 18.25 9.30273 18.25C4.74639 18.25 1.05273 14.5563 1.05273 10C1.05273 5.44365 4.74639 1.75 9.30273 1.75C13.8591 1.75 17.5527 5.44365 17.5527 10Z"
+                                stroke="#170033" stroke-width="1.83333" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-col flex-1">
+                    <div class="font-bold text-base">En centro de distribución</div>
+                    <div class="font-medium text-sm text-[#7A6C8C] flex flex-nowrap">El pedido llegó a la central
+                        logística y está siendo preparado para su ruta de entrega.</div>
+                </div>
+                <div class="font-medium text-sm text-[#7A6C8C] whitespace-nowrap">{{
+                    props.suborderDate.slice(0, 10) }}</div>
+            </div>
+        </div>
+</template>
+
+<script setup>
+
+
+const props = defineProps({
+    suborderDate: {
+        type: String,
+        required: false
+    }
+})
+
+</script>

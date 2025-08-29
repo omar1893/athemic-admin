@@ -4,15 +4,31 @@
       <div class="poppins font-medium text-2xl mb-6 text-gray-950">Verifica tu código</div>
       <form @submit.prevent="handlePinSubmit" class="flex flex-col gap-4">
         <div class="flex monserrat gap-2 justify-center">
-          <input v-for="(digit, i) in 6" :key="i" v-model="pinDigits[i]" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]*" class="w-12 h-12 text-center border rounded-md text-xl font-bold focus:ring-2 focus:ring-indigo-500" @input="onInput(i)" />
+          <input
+            v-for="(digit, i) in 6"
+            :key="i"
+            v-model="pinDigits[i]"
+            maxlength="1"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            class="w-12 h-12 text-center border rounded-md text-xl font-bold focus:ring-2 focus:ring-indigo-500"
+            @input="onInput(i)"
+            @paste="onPaste($event)"
+          />
         </div>
-        <button type="submit" class=" monserrat mt-2 px-4 py-2 rounded-[16px] bg-[#875EF8] inline-block self-center text-white font-bold" :disabled="loading || !isPinComplete">
+        <button
+          type="submit"
+          class="monserrat mt-2 px-4 py-2 rounded-[16px] bg-[#875EF8] inline-block self-center text-white font-bold"
+          :disabled="loading || !isPinComplete"
+        >
           {{ loading ? 'Verificando...' : 'Confirmar' }}
         </button>
       </form>
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -31,9 +47,25 @@ function onInput(i) {
     pinDigits.value[i] = pinDigits.value[i].slice(-1)
   }
   if (pinDigits.value[i] && i < 5) {
-    const next = document.querySelectorAll('input[type=text]')[i+1]
+    const next = document.querySelectorAll('input[type=text]')[i + 1]
     next && next.focus()
   }
+}
+
+function onPaste(event) {
+  event.preventDefault()
+  const clipboardData = event.clipboardData || window.clipboardData
+  const pastedData = clipboardData.getData('text')
+
+  const digits = pastedData.replace(/\D/g, '').slice(0, 6).split('')
+
+  digits.forEach((digit, idx) => {
+    pinDigits.value[idx] = digit
+  })
+
+  const nextIndex = digits.length < 6 ? digits.length : 5
+  const inputs = document.querySelectorAll('input[type=text]')
+  inputs[nextIndex] && inputs[nextIndex].focus()
 }
 
 async function handlePinSubmit() {
@@ -60,4 +92,4 @@ onMounted(() => {
   const first = document.querySelector('input[type=text]')
   first && first.focus()
 })
-</script> 
+</script>
