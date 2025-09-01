@@ -4,7 +4,7 @@ import config from '../config'
 export const productsService = {
   create: (data: any, config?: any) => axios.post(`https://mercapp-mono-production.up.railway.app/api/productos`, data, config),
   getAll: (params?: any, headers?: any) => axios.get(`${config.API_URL}/productos`, { params, headers }),
-  getById: (id: string, config?: any) => axios.get(`${config.API_URL}/productos/${id}`, config),
+  getById: (id: string, config?: any) => axios.get(`https://mercapp-mono-production.up.railway.app/api/productos/${id}`, config),
   update: (id: string, data: any, config?: any) => axios.patch(`${config.API_URL}/productos/${id}`, data, config),
   getBestSellers: () => axios.get(`${config.API_URL}/productos/mas-vendidos`),
   addInteraction: (data: any) => axios.post(`${config.API_URL}/productos/interaction`, data),
