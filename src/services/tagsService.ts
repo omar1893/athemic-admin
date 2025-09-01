@@ -2,6 +2,14 @@ import axios from 'axios'
 import config from '../config'
 
 export const tagsService = {
-  create: (data: any) => axios.post(`${config.API_URL}/tags`, data),
-  getAll: () => axios.get(`${config.API_URL}/tags`),
+  create: (data: any, token: string) => axios.post(`${config.API_URL}/tags`, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }),
+  getAll: (token: string) => axios.get(`${config.API_URL}/tags`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  }),
 } 

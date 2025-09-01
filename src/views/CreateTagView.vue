@@ -23,15 +23,28 @@
 import { ref } from 'vue'
 import { tagsService } from '@/services/tagsService'
 import { useRouter } from 'vue-router'
+
 const nombre = ref('')
 const descripcion = ref('')
 const router = useRouter()
+
 async function handleSubmit() {
   try {
-    await tagsService.create({ nombre: nombre.value, descripcion: descripcion.value })
+    const token = localStorage.getItem('accessToken')
+    if (!token) {
+      alert('No se encontró el token de autenticación')
+      return
+    }
+
+    await tagsService.create({ 
+      nombre: nombre.value, 
+      descripcion: descripcion.value 
+    }, token)
+    
     alert('Tag creado correctamente')
     router.push({ name: 'products' })
   } catch (e) {
+    console.error('Error al crear el tag:', e)
     alert('Error al crear el tag')
   }
 }

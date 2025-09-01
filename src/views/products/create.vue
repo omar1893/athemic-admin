@@ -90,7 +90,7 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import BackButton from '@/components/BackButton.vue'
-import ProductForm from '@/components/ProductForm.vue'
+import ProductForm from '../../components/ProductForm.vue'
 import { productsService } from '@/services/productsService'
 import { useSellerStore } from '@/stores/sellerStore'
 import ModalDefault from '../../components/ModalDefault.vue'

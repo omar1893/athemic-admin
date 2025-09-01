@@ -55,8 +55,9 @@
 
                         </slot>
 
-                        <button @click="updateStatusPost()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out  
-                            disabled:cursor-not-allowed disabled:bg-[#875EF8]/50 ">
+                        <button @click="updateStatusPost()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out">
+                        <!-- <button @click="modifyStatus()" :disabled="!selected" class="w-full mt-4 px-4 monserrat font-semibold rounded-full py-3 px-4 bg-[#875EF8] text-sm text-white transition-colors duration-300 ease-in-out  
+                            disabled:cursor-not-allowed disabled:bg-[#875EF8]/50 "> -->
                             Confirmar </button>
                     </ModalDefault>
                 </div>
@@ -154,6 +155,9 @@ function updateStatusPost() {
         .catch(error => {
             console.error('Error:', error);
         })
+}
+const modifyStatus = () => {
+    updateStatusPost()
 }
 
 function fireSwalStatus () {
